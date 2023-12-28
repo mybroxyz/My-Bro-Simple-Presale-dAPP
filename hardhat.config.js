@@ -17,7 +17,7 @@ module.exports = {
       }
     }
   },
-  defaultNetwork: 'rinkeby',
+  defaultNetwork: 'fuji',
   networks: {
     hardhat: {},
     rinkeby: {

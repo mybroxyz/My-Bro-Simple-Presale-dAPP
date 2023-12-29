@@ -8,6 +8,7 @@ import ApeIcon from '../Ape'
 
 const RPC_URL = process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL
 
+
 const fortmatic = fortmaticModule({
   apiKey: process.env.NEXT_PUBLIC_FORTMATIC_KEY
 })
@@ -18,7 +19,7 @@ const coinbaseWallet = coinbaseModule()
 
 const initOnboard = init({
   wallets: [walletConnect, coinbaseWallet, injected, fortmatic],
-  chains: [
+  chains: [ 
     // {
     //   id: '0x1',
     //   token: 'ETH',
@@ -32,11 +33,23 @@ const initOnboard = init({
     //   rpcUrl: 'https://ropsten.infura.io/v3/ababf9851fd845d0a167825f97eeb12b'
     // },
     {
-      id: '0x4',
-      token: 'rETH',
-      label: 'Ethereum Rinkeby Testnet',
-      rpcUrl: RPC_URL
-    }
+      id: '0xa869',
+      token: 'AVAX',
+      label: 'Fuji Avalanche C-Chain',
+      rpcUrl: 'https://api.avax-test.network/ext/bc/C/rpc'
+    },
+    {
+      id: '0xa86a',
+      token: 'AVAX',
+      label: 'Avalanche C-Chain',
+      rpcUrl: 'https://api.avax.network/ext/bc/C/rpc'
+    },
+   // {
+   //   id: '0x4',
+   //   token: 'rETH',
+   //   label: 'Ethereum Rinkeby Testnet',
+   //   rpcUrl: RPC_URL
+    //}
     // {
     //   id: '0x89',
     //   token: 'MATIC',

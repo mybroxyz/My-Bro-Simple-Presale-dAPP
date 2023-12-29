@@ -1,7 +1,7 @@
 const { createAlchemyWeb3 } = require('@alch/alchemy-web3')
-const { MerkleTree } = require('merkletreejs')
-const keccak256 = require('keccak256')
-const whitelist = require('../scripts/whitelist.js')
+//const { MerkleTree } = require('merkletreejs')
+//const keccak256 = require('keccak256')
+//const whitelist = require('../scripts/whitelist.js')
 
 const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL)
 import { config } from '../dapp.config'
@@ -10,9 +10,9 @@ const contract = require('../artifacts/contracts/BoredApe.sol/BoredApe.json')
 const nftContract = new web3.eth.Contract(contract.abi, config.contractAddress)
 
 // Calculate merkle root from the whitelist array
-const leafNodes = whitelist.map((addr) => keccak256(addr))
-const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true })
-const root = merkleTree.getRoot()
+//const leafNodes = whitelist.map((addr) => keccak256(addr))
+//const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true })
+//const root = merkleTree.getRoot()
 
 export const getTotalMinted = async () => {
   const totalMinted = await nftContract.methods.totalSupply().call()
@@ -52,10 +52,10 @@ export const presaleMint = async (mintAmount) => {
     }
   }
 
-  const leaf = keccak256(window.ethereum.selectedAddress)
+  /* const leaf = keccak256(window.ethereum.selectedAddress)
   const proof = merkleTree.getHexProof(leaf)
 
-  // Verify Merkle Proof
+ // Verify Merkle Proof
   const isValid = merkleTree.verify(proof, leaf, root)
 
   if (!isValid) {
@@ -63,7 +63,7 @@ export const presaleMint = async (mintAmount) => {
       success: false,
       status: 'Invalid Merkle Proof - You are not on the whitelist'
     }
-  }
+  }*/
 
   const nonce = await web3.eth.getTransactionCount(
     window.ethereum.selectedAddress,
@@ -78,7 +78,7 @@ export const presaleMint = async (mintAmount) => {
       web3.utils.toWei(String(config.price * mintAmount), 'ether')
     ).toString(16), // hex
     data: nftContract.methods
-      .presaleMint(window.ethereum.selectedAddress, mintAmount, proof)
+      .presaleMint(window.ethereum.selectedAddress, mintAmount)//, proof)
       .encodeABI(),
     nonce: nonce.toString(16)
   }
@@ -92,9 +92,9 @@ export const presaleMint = async (mintAmount) => {
     return {
       success: true,
       status: (
-        <a href={`https://rinkeby.etherscan.io/tx/${txHash}`} target="_blank">
-          <p>✅ Check out your transaction on Etherscan:</p>
-          <p>{`https://rinkeby.etherscan.io/tx/${txHash}`}</p>
+        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  //snowtrace.io
+          <p>✅ Check out your transaction on Snowtrace:</p>
+          <p>{`https://testnet.snowtrace.io/tx/${txHash}`}</p>
         </a>
       )
     }
@@ -139,9 +139,9 @@ export const publicMint = async (mintAmount) => {
     return {
       success: true,
       status: (
-        <a href={`https://rinkeby.etherscan.io/tx/${txHash}`} target="_blank">
-          <p>✅ Check out your transaction on Etherscan:</p>
-          <p>{`https://rinkeby.etherscan.io/tx/${txHash}`}</p>
+        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  //snowtrace.io
+          <p>✅ Check out your transaction on Snowtrace:</p>
+          <p>{`https://testnet.snowtrace.io/tx/${txHash}`}</p>
         </a>
       )
     }

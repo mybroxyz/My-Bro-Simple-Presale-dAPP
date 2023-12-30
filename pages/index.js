@@ -19,9 +19,9 @@ export default function Home() {
           <Link href="#">
             <a className="font-coiny text-xl md:text-3xl font-bold">
               <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
-                Seed
+                SEEDWORDS
               </span>
-              Words
+              NFT
             </a>
           </Link>
 
@@ -121,7 +121,7 @@ export default function Home() {
               </h2>
 
               <p className="mt-6 text-lg">
-                {`Seed Words is a collection of 2048 seedwords x 12 editions for a total collection size of 24576 NFTs available. Which letters will you mint?`}
+                {`SEEDWORDS is a collection of 2048 seedwords x 12 editions for a total collection size of 24576 NFTs available. Which letters will you mint?`}
               </p>
             </div>
           </div>

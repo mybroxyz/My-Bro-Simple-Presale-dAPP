@@ -109,7 +109,7 @@ export default function Home() {
           </Link>
 
           <div className="flex flex-col md:flex-row md:space-x-16 space-y-10 items-center mt-20 w-full">
-            {/* BoredApe Image */}
+            {/* Ape Image */}
             <img
               src="/images/9.png"
               className="w-64 h-64 rounded-md object-cover"
@@ -117,7 +117,7 @@ export default function Home() {
 
             <div className="flex flex-col md:items-start items-center justify-center text-center font-coiny text-gray-800 px-4 md:px-0 py-10 mt-14">
               <h2 className="font-bold text-2xl md:text-4xl uppercase">
-                About BoredApes
+                About SEEDWORDS
               </h2>
 
               <p className="mt-6 text-lg">

@@ -19,9 +19,9 @@ export default function Home() {
           <Link href="#">
             <a className="font-coiny text-xl md:text-3xl font-bold">
               <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
-                Bored
+                Seed
               </span>
-              Ape
+              Words
             </a>
           </Link>
 
@@ -29,7 +29,7 @@ export default function Home() {
           <nav aria-label="Contact Menu">
             <ul className="flex items-center space-x-4 md:space-x-6">
               <li className="cursor-pointer">
-                <a href="https://opensea.io" target="_blank" rel="noreferrer">
+                <a href="https://testnets.opensea.io" target="_blank" rel="noreferrer">
                   <svg
                     className="w-6 h-6 md:w-8 md:h-8"
                     viewBox="0 0 90 90"
@@ -46,7 +46,7 @@ export default function Home() {
 
               <li className="cursor-pointer">
                 <a
-                  href="https://twitter.com/DidemKkkaraasl1"
+                  href="https://twitter.com/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -65,7 +65,7 @@ export default function Home() {
 
               <li className="cursor-pointer">
                 <a
-                  href="https://discord.gg/rAFdkCwn"
+                  href="https://discord.gg/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -121,13 +121,7 @@ export default function Home() {
               </h2>
 
               <p className="mt-6 text-lg">
-                {`BoredApes are a collection of 5,555 burning hot NFTs living in
-                the core of the blockchain. Each individual BoredApes is
-                carefully curated from over 150 traits, along with some
-                incredibly rare 1/1s that have traits that can't be found from
-                any other BoredApes. Our vision is to create an amazing project
-                that will shed light, joy, love, and creativity! Burn on,
-                BoredApes!`}
+                {`Seed Words is a collection of 2048 seedwords x 12 editions for a total collection size of 24576 NFTs available. Which letters will you mint?`}
               </p>
             </div>
           </div>

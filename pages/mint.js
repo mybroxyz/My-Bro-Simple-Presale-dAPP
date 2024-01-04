@@ -7,7 +7,7 @@ import {
   getMaxSupply,
   isPausedState,
   isPublicSaleState,
-  isPreSaleState,
+  isPresaleState,
   presaleMint,
   publicMint
 } from '../utils/interact'
@@ -22,7 +22,7 @@ export default function Mint() {
   const [maxMintAmount, setMaxMintAmount] = useState(0)
   const [paused, setPaused] = useState(false)
   const [isPublicSale, setIsPublicSale] = useState(false)
-  const [isPreSale, setIsPreSale] = useState(false)
+  const [isPresale, setIsPresale] = useState(false)
 
   const [status, setStatus] = useState(null)
   const [mintAmount, setMintAmount] = useState(1)
@@ -73,11 +73,11 @@ export default function Mint() {
 
       setPaused(await isPausedState())
       setIsPublicSale(await isPublicSaleState())
-      const isPreSale = await isPreSaleState()
-      setIsPreSale(isPreSale)
+      const isPresale = await isPresaleState()
+      setIsPresale(isPresale)
 
       setMaxMintAmount(
-        isPreSale ? config.presaleMaxMintAmount : config.maxMintAmount
+        isPresale ? config.presaleMaxMintAmount : config.maxMintAmount
       )
     }
 
@@ -107,6 +107,11 @@ export default function Mint() {
     })
 
     setIsMinting(false)
+        // Refresh the onboard wallet display
+    if (success) {
+      //if have onboard wallet display maybe can  refresh it        
+
+        }
   }
   const publicMintHandler = async () => {
     setIsMinting(true)
@@ -119,8 +124,39 @@ export default function Mint() {
     })
 
     setIsMinting(false)
+
+        // Refresh the onboard wallet display
+        if (success) {
+      //if have onboard wallet display maybe can  refresh it        
+    }
   }
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setMaxSupply(await getMaxSupply());
+        setTotalMinted(await getTotalMinted());
+        setPaused(await isPausedState());
+        setIsPublicSale(await isPublicSaleState());
+        const presale = await isPresaleState();
+        setIsPresale(presale);
+
+        setMaxMintAmount(presale ? config.presaleMaxMintAmount : config.maxMintAmount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Initial fetch
+    fetchData();
+
+    // Fetch data every 5 seconds
+    const interval = setInterval(fetchData, 500);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className="min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center bg-brand-background ">
       <div className="relative w-full h-full flex flex-col items-center justify-center">
@@ -131,7 +167,7 @@ export default function Mint() {
 
         <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10">
           <div className="relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
-            {wallet && (
+          {wallet && (
               <button
                 className="absolute right-4 bg-indigo-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
                 onClick={() =>
@@ -144,15 +180,9 @@ export default function Mint() {
               </button>
             )}
             <h1 className="font-coiny uppercase font-bold text-3xl md:text-4xl bg-gradient-to-br  from-brand-green to-brand-blue bg-clip-text text-transparent mt-3">
-              {paused ? 'Paused' : isPreSale ? 'Pre-Sale' : 'Public Sale'}
+              {paused ? 'Paused' : isPresale ? 'Pre-Sale' : isPublicSale ? 'Public Sale' : "Minting soon"}
             </h1>
-            <h3 className="text-sm text-pink-200 tracking-widest">
-              {wallet?.accounts[0]?.address
-                ? wallet?.accounts[0]?.address.slice(0, 8) +
-                  '...' +
-                  wallet?.accounts[0]?.address.slice(-4)
-                : ''}
-            </h3>
+
 
             <div className="flex flex-col md:flex-row md:space-x-14 w-full mt-10 md:mt-14">
               <div className="relative w-full">
@@ -229,7 +259,7 @@ export default function Mint() {
                         {Number.parseFloat(config.price * mintAmount).toFixed(
                           2
                         )}{' '}
-                        ETH
+                        AVAX
                       </p>{' '}
                       <span className="text-gray-400">+ GAS</span>
                     </div>
@@ -245,7 +275,7 @@ export default function Mint() {
                         : 'bg-gradient-to-br from-brand-purple to-brand-pink shadow-lg hover:shadow-pink-400/50'
                     } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-white  mx-4 tracking-wide uppercase`}
                     disabled={paused || isMinting}
-                    onClick={isPreSale ? presaleMintHandler : publicMintHandler}
+                    onClick={isPresale ? presaleMintHandler : publicMintHandler}
                   >
                     {isMinting ? 'Minting...' : 'Mint'}
                   </button>
@@ -267,9 +297,9 @@ export default function Mint() {
                   status.success ? 'border-green-500' : 'border-brand-pink-400 '
                 } rounded-md text-start h-full px-4 py-4 w-full mx-auto mt-8 md:mt-4"`}
               >
-                <p className="flex flex-col space-y-2 text-white text-sm md:text-base break-words ...">
+                <div className="flex flex-col space-y-2 text-white text-sm md:text-base break-words ...">
                   {status.message}
-                </p>
+                </div>
               </div>
             )}
 
@@ -279,7 +309,7 @@ export default function Mint() {
                 Contract Address
               </h3>
               <a
-                href={`https://rinkeby.etherscan.io/address/${config.contractAddress}#readContract`}
+                href={`https://testnet.snowtrace.io/address/${config.contractAddress}#readContract`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 mt-4"

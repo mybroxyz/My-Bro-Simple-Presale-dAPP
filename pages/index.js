@@ -21,7 +21,7 @@ export default function Home() {
               <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
                 SEEDWORDS
               </span>
-              NFT
+              NFTs
             </a>
           </Link>
 

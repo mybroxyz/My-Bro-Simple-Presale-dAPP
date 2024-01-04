@@ -1,4 +1,8 @@
-[
+{
+	"_format": "hh-sol-artifact-1",
+	"contractName": "BoredApe",
+	"sourceName": "contracts/BoredApe.sol",
+	"abi": [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -1974,3 +1978,4 @@
 		"type": "receive"
 	}
 ]
+}

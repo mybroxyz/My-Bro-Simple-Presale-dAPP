@@ -8,9 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-    "engines": {
-      "node": "18.15" // Replace with your desired Node.js version
-    },
   "dependencies": {
     "@alch/alchemy-web3": "^1.2.4",
     "@nomiclabs/hardhat-ethers": "^2.0.5",
@@ -32,8 +29,7 @@
     "merkletreejs": "^0.2.30",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "web3-utils": "^4.1.0"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

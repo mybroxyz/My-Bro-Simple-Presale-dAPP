@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
     "engines": {
-      "node": "18.15" // Replace with your desired Node.js version
+      "node": "18.15"
     },
   "dependencies": {
     "@alch/alchemy-web3": "^1.2.4",

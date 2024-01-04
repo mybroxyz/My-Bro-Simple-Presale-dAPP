@@ -403,18 +403,16 @@ export const presaleMint = async (mintAmount) => { try{
     'latest'
   )
 
-  // Set up our Ethereum transaction
-  const tx = {
-    to: config.contractAddress,
-    from: window.ethereum.selectedAddress,
-    value: parseInt(
-      web3.utils.toWei(String(config.price * mintAmount), 'ether')
-    ).toString(16), // hex
-    data: nftContract.methods
-      .allowlistMint(mintAmount)//, proof)
-      .encodeABI(),
-    nonce: nonce.toString(16)
-  }
+// Set up our Ethereum transaction
+const tx = {
+  to: config.contractAddress,
+  from: window.ethereum.selectedAddress,
+  value: parseInt(
+    web3.utils.toWei((config.price * mintAmount).toFixed(18), 'ether')
+  ).toString(16), // hex
+  data: nftContract.methods.allowlistMint(mintAmount).encodeABI(),
+  nonce: nonce.toString(16)
+};
 
   try {
     const txHash = await window.ethereum.request({

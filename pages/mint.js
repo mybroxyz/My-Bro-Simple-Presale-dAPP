@@ -26,6 +26,7 @@ export default function Mint() {
 
   const [status, setStatus] = useState(null)
   const [mintAmount, setMintAmount] = useState(1)
+  const presaleMintAmount = 0;
   const [isMinting, setIsMinting] = useState(false)
   const [onboard, setOnboard] = useState(null)
 
@@ -99,7 +100,7 @@ export default function Mint() {
   const presaleMintHandler = async () => {
     setIsMinting(true)
 
-    const { success, status } = await presaleMint(mintAmount)
+    const { success, status } = await presaleMint(presaleMintAmount)
 
     setStatus({
       success,
@@ -270,14 +271,14 @@ export default function Mint() {
                 {wallet ? (
                   <button
                     className={` ${
-                      paused || isMinting
+                      paused || isMinting || (!isPresale&&!isPublicSale)
                         ? 'bg-gray-900 cursor-not-allowed'
                         : 'bg-gradient-to-br from-brand-purple to-brand-pink shadow-lg hover:shadow-pink-400/50'
-                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-white  mx-4 tracking-wide uppercase`}
-                    disabled={paused || isMinting}
+                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-white  mx-4 tracking-wide`}
+                    disabled={paused || isMinting || (!isPresale&&!isPublicSale)}
                     onClick={isPresale ? presaleMintHandler : publicMintHandler}
                   >
-                    {isMinting ? 'Minting...' : 'Mint'}
+                    {(!isPresale&&!isPublicSale) ? 'Wen?' : isMinting ? 'Minting...' : 'Mint'}
                   </button>
                 ) : (
                   <button

@@ -376,6 +376,13 @@ export const isPresaleState = async () => { try{
   console.error('Error with isPresaleState interact.js[]', error);
 }}
 
+export const isNoSaleState = async () => { try{
+  const paused = await nftContractProxy.paused.call()
+  return paused
+}catch (error) {
+  console.error('Error with isPausedState interact.js[]', error);
+}}
+
 export const getPublicPrice = async () => {
   const publicPrice = await nftContractProxy.salePrice.call()
   return publicPrice

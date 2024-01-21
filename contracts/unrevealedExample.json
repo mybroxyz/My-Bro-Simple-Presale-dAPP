@@ -1,12 +1,18 @@
 {
     "name": "Unrevealed",
-    "description": "The Autumnal Eldritch from The Clique Folk. A group collab featuring works from some of our favorite Avalanche artists. 33 total possible . 6.9% royalties. Each piece is inspired by at least one of five words; Word Bank:   Reaping, Uncomfortable, Eldritch, Transition, Autumn. Many thanks to our eleven Artists: 0x Margo @NFTbyMargo, Scribble Warlock @ScribbleWarl0ck, Schwock @Schwockenbocker, Couse @Jmiktutt, Harrowed Wrath @HarrowedWrath, Remi @0xRemiSan, The Garbage Man @the_garbage_man, Jelly @0xJelle, Will @0xFounderWill, Daksinga @daksinga, Jerry Smith @JerrySmithfasho",
+    "description": "Introducing the Weekend Wankers Project
+    1,111 Weekend Wankers on Avalanche
+    Wanklist Mint: January 21st, 4:20pm ET, Free for those Wanklisted, Max 1
+    
+    Public Mint: January 21st, 4:30pm ET, 1 Avax, Max 10
+    
+    This whole adventure kicked off when a few $avax influencers shared a copy pasta tweet, and their followers joined the fun, posting wallet addresses in the comments without realizing it was all part of a viral joke. That's where our lightbulb moment happened: Why not turn this wave of laughter into a gift of free NFTs for those commenters? With an energetic team by my side, we plunged into a frenzy of art creation, contract forging, and vibrant marketing. Our mission? To mix fun, ignite some wanking chaos, and craft something truly memorable. We're here to shake things up and create an NFT experience that's not just about the laughs but also holds real value. Ready to join the fun?",
     "image": "ipfs://QmYDTDErg8P9uB56XGGLE7XVTR9UiB2o92B2RGGuS7nBi4",
-    "artist": "Unrevealed",
+    "artist": "Octo",
       "attributes": [
         {
           "trait_type": "Artist",
-          "value": "Unrevealed"
+          "value": "Octo"
         }
       ]
   }

@@ -9,13 +9,19 @@ import {
   isPublicSaleState,
   isPresaleState,
   presaleMint,
-  publicMint
+  publicMint,
+  checkTimeLeftPresale,
+  isAllowlisted
 } from '../utils/interact'
 
 export default function Mint() {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
+
+  const [timeLeftPresale, setTimeLeftPresale] = useState(0);
+  const [isAllowListed, setIsAllowListed] = useState(false);
+
 
   const [maxSupply, setMaxSupply] = useState(0)
   const [totalMinted, setTotalMinted] = useState(0)
@@ -85,6 +91,26 @@ export default function Mint() {
     init()
   }, [])
 
+
+  useEffect(() => {
+    const fetchTimeLeft = async () => {
+      try {
+        const timeLeftPresale = await checkTimeLeftPresale();
+        //const timeLeftPublic = await checkTimeLeftPublic();
+  
+        // Set the timeLeft based on the sale type
+        //setTimeLeft(isPresale ? timeLeftPresale : timeLeftPublic);
+        setTimeLeft(timeLeftPresale);
+      } catch (error) {
+        console.error('Error fetching time left:', error);
+      }
+    };
+  
+    fetchTimeLeft();
+  }, []);
+
+  
+  
   const incrementMintAmount = () => {
     if (mintAmount < maxMintAmount) {
       setMintAmount(mintAmount + 1)
@@ -97,6 +123,7 @@ export default function Mint() {
     }
   }
 
+  
   const presaleMintHandler = async () => {
     setIsMinting(true)
 
@@ -142,8 +169,8 @@ export default function Mint() {
         setIsPublicSale(await isPublicSaleState());
         const presale = await isPresaleState();
         setIsPresale(presale);
-
         setMaxMintAmount(presale ? config.presaleMaxMintAmount : config.maxMintAmount);
+        fetchTimeLeft();
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -250,16 +277,15 @@ export default function Mint() {
 
                 <div className="border-t border-b py-4 mt-16 w-full">
                   <div className="w-full text-xl font-coiny flex items-center justify-between text-navajoWhite">
-                    <p>Total</p>
+                    <p> {(!isPresale&&!isPublicSale) ? '' : 'Total'}</p>
 
                     <div className="flex items-center space-x-3">
-                      <p>
-                        {isPresale ? '0' : Number.parseFloat(config.price * mintAmount).toFixed(
-                          0
-                        )}{' '}
-                        AVAX
+                      <p> 
+                      {(!isPresale && !isPublicSale && !timeLeftPresale && wallet) ? `Weekend Wankers Coming in ${timeLeftPresale} minutes` : (isPresale && !isPublicSale && !timeLeftPresale) ? '0' : (!isPresale && isPublicSale && !timeLeftPresale) ? Number.parseFloat(config.price * mintAmount).toFixed(0) : ''}
+{' '}
+                        {(!isPresale&&!isPublicSale) ? '' : 'AVAX'}
                       </p>{' '}
-                      <span className="text-gray-400">+ GAS</span>
+                      <span className="text-gray-400">{(!isPresale&&!isPublicSale) ? '' : '+ GAS'}</span>
                     </div>
                   </div>
                 </div>
@@ -271,7 +297,7 @@ export default function Mint() {
                       paused || isMinting || (!isPresale&&!isPublicSale)
                         ? 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg cursor-not-allowed'
                         : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-navajoWhite-400/50'
-                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-rose-600  mx-4 tracking-wide`}
+                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-rose-500  mx-4 tracking-wide`}
                     disabled={paused || isMinting || (!isPresale&&!isPublicSale)}
                     onClick={isPresale ? presaleMintHandler : publicMintHandler}
                   >
@@ -279,7 +305,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="font-coiny mt-12 w-full bg-gradient-to-br from-brand-purple to-navajoWhite shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
+                    className="font-coiny mt-12 w-full bg-gradient-to-br from-browner to-navajoWhite shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
                     onClick={() => connect()}
                   >
                     Connect Wallet

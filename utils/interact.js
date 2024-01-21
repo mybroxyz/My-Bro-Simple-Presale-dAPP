@@ -287,12 +287,7 @@ export const getMaxSupply = async () => { try{
   console.error('Error with getMaxSupply interact.js[]', error);
 }}
 
-export const isAllowListed = async (address) => { try{
-  const isAllowListed = await nftContractProxy.allowlist(address).call();
-  return isAllowListed;
-}catch (error) {
-  console.error('Error with isAllowlisted interact.js[]', error);
-}}
+
 
 
 export const getAmountForAllowList = async () => { try{
@@ -309,6 +304,25 @@ export const getBalanceOf = async (owner) => { try{
 }catch (error) {
   console.error('Error with getBalanceOf interact.js[]', error);
 }}
+
+
+
+
+export const checkAllowlist = async (owner) => { try{
+  const isAllowListed = await nftContractProxy.balanceOf(owner).call();
+  return isAllowListed;
+}catch (error) {
+  console.error('Error with checkAllowlist interact.js[]', error);
+}}
+
+export const isAllowListed = async (address) => { try{
+  const isAllowListed = await nftContractProxy.allowlist(address).call();
+  return isAllowListed;
+}catch (error) {
+  console.error('Error with isAllowlisted interact.js[]', error);
+}}
+
+
 
 
 export const getCollectionSize = async () => { try{
@@ -370,11 +384,30 @@ export const isPresaleState = async () => { try{
   const publicSaleStartTime = await nftContractProxy.publicSaleStartTime.call();
   const presaleSaleStartTime = await nftContractProxy.allowlistStartTime.call();
   const currentTime = Math.ceil(Date.now() / 1000); // Current time in seconds
-  const isPresale = currentTime < publicSaleStartTime && currentTime >= presaleStartTime;
+  const isPresale = currentTime < publicSaleStartTime && currentTime >= presaleSaleStartTime;
   return isPresale;
 }catch (error) {
   console.error('Error with isPresaleState interact.js[]', error);
 }}
+
+export const checkTimeLeftPresale = async () => { try{
+  const presaleSaleStartTime = await nftContractProxy.allowlistStartTime.call();
+  const currentTime = Math.ceil(Date.now() / 10000); // Current time in seconds
+  const timeLeft = Math.max(0, (presaleSaleStartTime - currentTime) / 60); // Calculate time left in minutes
+  return timeLeft;
+}catch (error) {
+  console.error('Error with checkTimeLeft interact.js[]', error);
+}}
+
+export const checkTimeLeftPublic = async () => { try{
+  const publicSaleStartTime = await nftContractProxy.allowlistStartTime.call();
+  const currentTime = Math.ceil(Date.now() / 10000); // Current time in seconds
+  const timeLeft = Math.max(0, (publicSaleStartTime - currentTime) / 60); // Calculate time left in minutes
+  return timeLeft;
+}catch (error) {
+  console.error('Error with checkTimeLeft interact.js[]', error);
+}}
+
 
 export const isNoSaleState = async () => { try{
   const paused = await nftContractProxy.paused.call()

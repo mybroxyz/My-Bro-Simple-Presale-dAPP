@@ -1,18 +1,12 @@
 {
     "name": "Unrevealed",
-    "description": "Introducing the Weekend Wankers Project
-    1,111 Weekend Wankers on Avalanche
-    Wanklist Mint: January 21st, 4:20pm ET, Free for those Wanklisted, Max 1
-    
-    Public Mint: January 21st, 4:30pm ET, 1 Avax, Max 10
-    
-    This whole adventure kicked off when a few $avax influencers shared a copy pasta tweet, and their followers joined the fun, posting wallet addresses in the comments without realizing it was all part of a viral joke. That's where our lightbulb moment happened: Why not turn this wave of laughter into a gift of free NFTs for those commenters? With an energetic team by my side, we plunged into a frenzy of art creation, contract forging, and vibrant marketing. Our mission? To mix fun, ignite some wanking chaos, and craft something truly memorable. We're here to shake things up and create an NFT experience that's not just about the laughs but also holds real value. Ready to join the fun?",
+    "description": "Weekend Wankers is a 1,111 piece NFT collection inspired by a viral tweet frenzy, blending humor and digital art to gift unique, whimsical tokens to the spontaneous Avalanche community",
     "image": "ipfs://QmYDTDErg8P9uB56XGGLE7XVTR9UiB2o92B2RGGuS7nBi4",
     "artist": "Octo",
       "attributes": [
         {
-          "trait_type": "Artist",
-          "value": "Octo"
+          "trait_type": "Wanker",
+          "value": "Weekend"
         }
       ]
   }

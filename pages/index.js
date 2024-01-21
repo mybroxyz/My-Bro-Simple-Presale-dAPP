@@ -70,7 +70,7 @@ export default function Home() {
         <div className="flex flex-col items-center max-w-4xl w-full">
           <Link href="/mint" passHref>
             <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-500 hover:bg-rose-600 hover:text-white">
-              Mint WANKER here
+            Mint and Check WL
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6 ml-2 mt-0.5"
@@ -95,13 +95,18 @@ export default function Home() {
               className="w-64 h-64 rounded-md object-cover"
             />
 
-            <div className="flex flex-col md:items-start items-center justify-center text-center font-coiny text-gray-800 px-4 md:px-0 py-10 mt-14">
+            <div className="flex flex-col md:items-start items-center justify-center text-center font-coiny text-gray-800 px-4 md:px-0 py-10 mt-14" style={{ whiteSpace: 'pre-line' }}>
               <h2 className="font-bold text-2xl md:text-4xl">
-                About Wankers...
+              Introducing the Weekend Wankers Project 
               </h2>
 
               <p className="mt-6 text-lg">
-                {`1,111 Weekend Wankers on Avalanche 🔺| Minting Date: Sunday, 4:20pm ET | Wanklist special mint | Created by @AvaxOcto`}
+                {`1,111 Weekend Wankers on Avalanche
+Wanklist Mint: January 21st, 4:20pm ET, Free for those Wanklisted, Max 1
+
+Public Mint: January 21st, 4:30pm ET, 1 Avax, Max 10
+
+This whole adventure kicked off when a few $avax influencers shared a copy pasta tweet, and their followers joined the fun, posting wallet addresses in the comments without realizing it was all part of a viral joke. That's where our lightbulb moment happened: Why not turn this wave of laughter into a gift of free NFTs for those commenters? With an energetic team by my side, we plunged into a frenzy of art creation, contract forging, and vibrant marketing. Our mission? To mix fun, ignite some wanking chaos, and craft something truly memorable. We're here to shake things up and create an NFT experience that's not just about the laughs but also holds real value. Ready to join the fun?`}
               </p>
             </div>
           </div>

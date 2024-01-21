@@ -271,7 +271,7 @@ export default function Mint() {
                   </button>
                 </div>
 
-                <p className="text-sm text-pink-200 tracking-widest mt-3">
+                <p className="text-sm text-rose-200 tracking-widest mt-3">
                   Max Mint Amount: {maxMintAmount}
                 </p>
 
@@ -281,7 +281,7 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p> 
-                      {(!isPresale && !isPublicSale && !timeLeftPresale && wallet) ? `Weekend Wankers Coming in ${timeLeftPresale} minutes` : (isPresale && !isPublicSale && !timeLeftPresale) ? '0' : (!isPresale && isPublicSale && !timeLeftPresale) ? Number.parseFloat(config.price * mintAmount).toFixed(0) : ''}
+                      {(!isPresale && !isPublicSale && !timeLeftPresale && wallet) ? `Weekend Wankers Coming in ${timeLeftPresale} minutes!` : (isPresale && !isPublicSale && !timeLeftPresale) ? '0' : (!isPresale && isPublicSale && !timeLeftPresale) ? Number.parseFloat(config.price * mintAmount).toFixed(0) : ''}
 {' '}
                         {(!isPresale&&!isPublicSale) ? '' : 'AVAX'}
                       </p>{' '}
@@ -305,7 +305,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="font-coiny mt-12 w-full bg-gradient-to-br from-browner to-navajoWhite shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
+                    className="font-coiny mt-12 w-full bg-gradient-to-br from-browner to-navajoWhite shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-rose-400/50 mx-4 tracking-wide uppercase"
                     onClick={() => connect()}
                   >
                     Connect Wallet

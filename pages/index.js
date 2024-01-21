@@ -19,9 +19,8 @@ export default function Home() {
           <Link href="#">
             <a className="font-coiny text-xl md:text-3xl font-bold">
               <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
-                SEEDWORDS
               </span>
-              NFTs
+              Weekend Wankers NFTs
             </a>
           </Link>
 
@@ -29,7 +28,7 @@ export default function Home() {
           <nav aria-label="Contact Menu">
             <ul className="flex items-center space-x-4 md:space-x-6">
               <li className="cursor-pointer">
-                <a href="https://testnets.opensea.io" target="_blank" rel="noreferrer">
+                <a href="https://hyperspace.xyz/collection/2571aEafC248cd79dA50af17b2Ef9E45912Ed027" target="_blank" rel="noreferrer">
                   <svg
                     className="w-6 h-6 md:w-8 md:h-8"
                     viewBox="0 0 90 90"

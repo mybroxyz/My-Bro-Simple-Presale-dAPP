@@ -268,8 +268,8 @@ export default function Mint() {
                 {wallet ? (
                   <button
                     className={` ${
-                      paused || isMinting 
-                        ? 'bg-gray-900 cursor-not-allowed'
+                      paused || isMinting || (!isPresale&&!isPublicSale)
+                        ? 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg cursor-not-allowed'
                         : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-navajoWhite-400/50'
                     } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-rose-600  mx-4 tracking-wide`}
                     disabled={paused || isMinting || (!isPresale&&!isPublicSale)}

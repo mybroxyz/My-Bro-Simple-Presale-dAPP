@@ -301,7 +301,7 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p> 
-                      {(!isPresale && !isPublicSale && !timeLeftPresale && wallet) ? `Weekend Wankers Coming in ${timeLeftPresale} minutes!` : (isPresale && !isPublicSale && !timeLeftPresale) ? '0' : (!isPresale && isPublicSale && !timeLeftPresale) ? Number.parseFloat(config.price * mintAmount).toFixed(0) : ''}
+                      {(!isPresale && !isPublicSale && !timeLeftPresale && wallet) ? `` : (isPresale && !isPublicSale && !timeLeftPresale) ? '0' : (!isPresale && isPublicSale && !timeLeftPresale) ? Number.parseFloat(config.price * mintAmount).toFixed(0) : ''}
 {' '}
                         {(!isPresale&&!isPublicSale) ? '' : 'AVAX'}
                       </p>{' '}

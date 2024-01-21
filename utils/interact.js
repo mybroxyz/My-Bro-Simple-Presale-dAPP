@@ -360,7 +360,7 @@ export const getName = async () => { try{
 export const isPublicSaleState = async () => { try{
   const publicSaleStartTime = await nftContractProxy.publicSaleStartTime.call();
   const currentTime = Math.ceil(Date.now() / 1000); // Current time in seconds
-  const isPublicSale = currentTime >= publicSaleStartTime;
+  const isPublicSale = currentTime >= publicSaleStartTime  && publicSaleStartTime > 0;
   return isPublicSale;
 }catch (error) {
   console.error('Error with isPublicSaleState interact.js[]', error);

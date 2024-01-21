@@ -367,7 +367,7 @@ export default function Mint() {
                 Contract Address :
               </h3>
               <a
-                href={`https://snowtrace.io/address/${config.contractAddress}#readContract`} //testnet.snowtrace.io
+                href={`https://snowtrace.io/address/${config.contractAddress}/contract/43114/readProxyContract?chainId=43114`} //testnet.snowtrace.io   ${...}#code
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 mt-4"

@@ -36,6 +36,26 @@ export default function Mint() {
   const [isMinting, setIsMinting] = useState(false)
   const [onboard, setOnboard] = useState(null)
 
+
+
+
+  useEffect(() => {
+    const fetchAllowlistStatus = async () => {
+      try {
+        if (wallet && wallet.address) {
+          const allowlistStatus = await isAllowListed(wallet.address);
+          setIsAllowListed(allowlistStatus);
+        }
+      } catch (error) {
+        console.error('Error fetching allowlist status:', error);
+      }
+    };
+  
+    fetchAllowlistStatus();
+  }, []);
+  
+
+
   useEffect(() => {
     setOnboard(initOnboard)
   }, [])
@@ -329,8 +349,22 @@ export default function Mint() {
 
             {/* Contract Address */}
             <div className="border-t border-gray-800 flex flex-col items-center mt-10 py-2 w-full">
-              <h3 className="font-coiny text-2xl text-navajoWhite uppercase mt-6">
-                Contract Address
+
+            {wallet && (
+  <p className="font-coiny text-2xl text-rose-500 mt-6">
+    {isAllowListed ? '*Connected wallet is allowlisted' : '*Connected wallet is not allowlisted'}
+  </p>
+) } 
+
+{!wallet && (
+  <p className="font-coiny text-2xl text-rose-500 mt-6">
+    *Connect wallet to check allowlist
+  </p>
+) } 
+
+
+              <h3 className="font-coiny text-xl text-navajoWhite mt-6">
+                Contract Address :
               </h3>
               <a
                 href={`https://testnet.snowtrace.io/address/${config.contractAddress}#readContract`}

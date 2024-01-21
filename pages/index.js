@@ -69,7 +69,7 @@ export default function Home() {
       <div className="h-full w-full container max-w-5xl mx-auto flex flex-col items-center pt-4">
         <div className="flex flex-col items-center max-w-4xl w-full">
           <Link href="/mint" passHref>
-            <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-400 hover:bg-rose-600 hover:text-white">
+            <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-500 hover:bg-rose-600 hover:text-white">
               Mint WANKER here
               <svg
                 xmlns="http://www.w3.org/2000/svg"

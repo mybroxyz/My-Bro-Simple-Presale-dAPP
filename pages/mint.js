@@ -352,13 +352,13 @@ export default function Mint() {
 
             {wallet && (
   <p className="font-coiny text-2xl text-rose-500 mt-6">
-    {isAllowListed ? '*Connected wallet is allowlisted' : '*Connected wallet is not allowlisted'}
+    {isAllowListed ? '*Connected wallet is on wanklist' : '*Connected wallet is not wanklisted'}
   </p>
 ) } 
 
 {!wallet && (
   <p className="font-coiny text-2xl text-rose-500 mt-6">
-    *Connect wallet to check allowlist
+    *Connect wallet to check wanklist
   </p>
 ) } 
 

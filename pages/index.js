@@ -70,7 +70,7 @@ d="M31.287 0H60.9294L37.859 49.4941C35.8401 53.8252 34.8307 55.9908 35.1365 57.6
         <div className="flex flex-col items-center max-w-4xl w-full">
           <Link href="/mint" passHref>
             <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-400 hover:bg-rose-600 hover:text-white">
-              Minter WANKER here
+              Mint WANKER here
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6 ml-2 mt-0.5"
@@ -101,7 +101,7 @@ d="M31.287 0H60.9294L37.859 49.4941C35.8401 53.8252 34.8307 55.9908 35.1365 57.6
               </h2>
 
               <p className="mt-6 text-lg">
-                {`1,111 Weekend Wankers on Avalanche 🔺| Minting Date: Sunday, 4:20pm ET | Wanklist special mint`}
+                {`1,111 Weekend Wankers on Avalanche 🔺| Minting Date: Sunday, 4:20pm ET | Wanklist special mint | Created by @AvaxOcto`}
               </p>
             </div>
           </div>

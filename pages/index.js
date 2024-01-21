@@ -6,7 +6,7 @@ import { config } from '../dapp.config'
 
 export default function Home() {
   return (
-<div style={{ minHeight: '100vh', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'navajowhite', overflow: 'hidden' }}>
+<div className="min-h-screen h-full w-full flex flex-col bg-navajowhite overflow-hidden">
       <Head>
         <title>{config.title}</title>
         <meta name="description" content={config.description} />
@@ -78,7 +78,7 @@ export default function Home() {
       <div className="h-full w-full container max-w-5xl mx-auto flex flex-col items-center pt-4">
         <div className="flex flex-col items-center max-w-4xl w-full">
           <Link href="/mint" passHref>
-            <a className="mt-16 font-coiny uppercase inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-500 hover:bg-rose-600 hover:text-white">
+            <a className="mt-16 font-coiny uppercase inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-400 hover:bg-rose-600 hover:text-white">
 Mint WANKER Here              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6 ml-2 mt-0.5"

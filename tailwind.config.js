@@ -18,6 +18,7 @@ module.exports = {
         'brand-green': 'var(--clr-green)',
         'brand-light': 'var(--clr-light)',
         'navajoWhite': 'var(--navajo-White)',
+        'browner' : 'var(--brown-er)',
         'brand-background': 'var(--clr-background)'
       },
       animation: {

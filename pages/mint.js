@@ -159,18 +159,15 @@ export default function Mint() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center bg-brand-background ">
+    <div className="min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center bg-navajoWhite ">
       <div className="relative w-full h-full flex flex-col items-center justify-center">
-        <img
-          src="/images/blur.jpeg"
-          className="animate-pulse-slow absolute inset-auto block w-full min-h-screen object-cover"
-        />
+        
 
         <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10">
           <div className="relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
           {wallet && (
               <button
-                className="absolute right-4 bg-indigo-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
+                className="absolute right-4 bg-yellow-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
                 onClick={() =>
                   disconnect({
                     label: wallet.label
@@ -180,7 +177,7 @@ export default function Mint() {
                 Disconnect
               </button>
             )}
-            <h1 className="font-coiny uppercase font-bold text-3xl md:text-4xl bg-gradient-to-br  from-brand-green to-brand-blue bg-clip-text text-transparent mt-3">
+            <h1 className="font-coiny uppercase font-bold text-3xl md:text-4xl bg-gradient-to-br  from-navajoWhite to-browner bg-clip-text text-transparent mt-3">
               {paused ? 'Paused' : isPresale ? 'Pre-Sale' : isPublicSale ? 'Public Sale' : "Wanking soon"}
             </h1>
 
@@ -189,7 +186,7 @@ export default function Mint() {
               <div className="relative w-full">
                 <div className="font-coiny z-10 absolute top-2 left-2 opacity-80 filter backdrop-blur-lg text-base px-4 py-2 bg-black border border-brand-purple rounded-md flex items-center justify-center text-white font-semibold">
                   <p>
-                    <span className="text-brand-pink">{totalMinted}</span> /{' '}
+                    <span className="text-navajoWhite">{totalMinted}</span> /{' '}
                     {maxSupply}
                   </p>
                 </div>
@@ -222,7 +219,7 @@ export default function Mint() {
                     </svg>
                   </button>
 
-                  <p className="flex items-center justify-center flex-1 grow text-center font-bold text-brand-pink text-3xl md:text-4xl">
+                  <p className="flex items-center justify-center flex-1 grow text-center font-bold text-navajoWhite text-3xl md:text-4xl">
                     {mintAmount}
                   </p>
 
@@ -252,13 +249,13 @@ export default function Mint() {
                 </p>
 
                 <div className="border-t border-b py-4 mt-16 w-full">
-                  <div className="w-full text-xl font-coiny flex items-center justify-between text-brand-yellow">
+                  <div className="w-full text-xl font-coiny flex items-center justify-between text-navajoWhite">
                     <p>Total</p>
 
                     <div className="flex items-center space-x-3">
                       <p>
-                        {Number.parseFloat(config.price * mintAmount).toFixed(
-                          2
+                        {isPresale ? '0' : Number.parseFloat(config.price * mintAmount).toFixed(
+                          0
                         )}{' '}
                         AVAX
                       </p>{' '}
@@ -271,10 +268,10 @@ export default function Mint() {
                 {wallet ? (
                   <button
                     className={` ${
-                      paused || isMinting || (!isPresale&&!isPublicSale)
+                      paused || isMinting 
                         ? 'bg-gray-900 cursor-not-allowed'
-                        : 'bg-gradient-to-br from-brand-purple to-brand-pink shadow-lg hover:shadow-pink-400/50'
-                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-white  mx-4 tracking-wide`}
+                        : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-navajoWhite-400/50'
+                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-rose-600  mx-4 tracking-wide`}
                     disabled={paused || isMinting || (!isPresale&&!isPublicSale)}
                     onClick={isPresale ? presaleMintHandler : publicMintHandler}
                   >
@@ -282,7 +279,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="font-coiny mt-12 w-full bg-gradient-to-br from-brand-purple to-brand-pink shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
+                    className="font-coiny mt-12 w-full bg-gradient-to-br from-brand-purple to-navajoWhite shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
                     onClick={() => connect()}
                   >
                     Connect Wallet
@@ -295,7 +292,7 @@ export default function Mint() {
             {status && (
               <div
                 className={`border ${
-                  status.success ? 'border-green-500' : 'border-brand-pink-400 '
+                  status.success ? 'border-green-500' : 'border-navajoWhite-400 '
                 } rounded-md text-start h-full px-4 py-4 w-full mx-auto mt-8 md:mt-4"`}
               >
                 <div className="flex flex-col space-y-2 text-white text-sm md:text-base break-words ...">
@@ -306,7 +303,7 @@ export default function Mint() {
 
             {/* Contract Address */}
             <div className="border-t border-gray-800 flex flex-col items-center mt-10 py-2 w-full">
-              <h3 className="font-coiny text-2xl text-brand-pink uppercase mt-6">
+              <h3 className="font-coiny text-2xl text-navajoWhite uppercase mt-6">
                 Contract Address
               </h3>
               <a

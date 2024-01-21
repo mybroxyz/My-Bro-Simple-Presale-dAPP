@@ -167,7 +167,7 @@ const initEthereumListener = () => { try{
       }
     } else {
       // Handle the case where the Ethereum provider is not available
-      console.error("Ethereum provider not found. Please install MetaMask or use a compatible Ethereum wallet. [interact.js]");
+      console.error("EVM provider not found. Please install Rabbi.io or Metamask or another compatible EVM wallet. [interact.js]");
       // You might want to display a message to the user or provide instructions on how to proceed.
     }
   }
@@ -286,8 +286,6 @@ export const getMaxSupply = async () => { try{
 }catch (error) {
   console.error('Error with getMaxSupply interact.js[]', error);
 }}
-
-
 
 export const isAllowListed = async (address) => { try{
   const isAllowListed = await nftContractProxy.allowlist(address).call();
@@ -459,7 +457,7 @@ const tx = {
   value: parseInt(
     web3.utils.toWei((config.price * mintAmount).toFixed(18), 'ether')
   ).toString(16), // hex
-  data: nftContract.methods.mint(mintAmount).encodeABI(),
+  data: nftContract.methods.publicSaleMint(mintAmount).encodeABI(),
   nonce: nonce.toString(16)
 };
 
@@ -473,9 +471,9 @@ const tx = {
     return {
       success: true,
       status: (
-        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  //snowtrace.io
+        <a href={`https://snowtrace.io/tx/${txHash}`} target="_blank">  //testnet.snowtrace.io
           <p>✅ Check out your transaction on Snowtrace:</p>
-          <p>{`https://testnet.snowtrace.io/tx/${txHash}`}</p>
+          <p>{`https://snowtrace.io/tx/${txHash}`}</p>
         </a>
       )
     }

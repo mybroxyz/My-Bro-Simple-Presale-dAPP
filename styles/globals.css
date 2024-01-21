@@ -61,10 +61,7 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-family);
-}
-
-body {
-  background-color: navajowhite;
+  background: navajowhite;
 }
 
 ::selection {

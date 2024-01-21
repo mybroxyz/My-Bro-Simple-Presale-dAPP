@@ -247,7 +247,7 @@ export default function Mint() {
               <div className="flex flex-col items-center w-full px-4 mt-16 md:mt-0">
                 <div className="font-coiny flex items-center justify-between w-full">
                   <button
-                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-gray-300 font-bold rounded-md"
+                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-browner font-bold rounded-md"
                     onClick={incrementMintAmount}
                   >
                     <svg
@@ -271,7 +271,7 @@ export default function Mint() {
                   </p>
 
                   <button
-                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-gray-300 font-bold rounded-md"
+                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-browner font-bold rounded-md"
                     onClick={decrementMintAmount}
                   >
                     <svg
@@ -296,7 +296,7 @@ export default function Mint() {
                 </p>
 
                 <div className="border-t border-b py-4 mt-16 w-full">
-                  <div className="w-full text-xl font-coiny flex items-center justify-between text-navajoWhite">
+                  <div className="w-full text-xl font-coiny flex items-center justify-between text-browner">
                     <p> {(!isPresale&&!isPublicSale) ? '' : 'Total'}</p>
 
                     <div className="flex items-center space-x-3">
@@ -316,7 +316,7 @@ export default function Mint() {
                     className={` ${
                       paused || isMinting || (!isPresale&&!isPublicSale)
                         ? 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg cursor-not-allowed'
-                        : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-navajoWhite-400/50'
+                        : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-browner-400/50'
                     } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-rose-500  mx-4 tracking-wide`}
                     disabled={paused || isMinting || (!isPresale&&!isPublicSale)}
                     onClick={isPresale ? presaleMintHandler : publicMintHandler}
@@ -352,11 +352,11 @@ export default function Mint() {
 
             {wallet && (
   <p className="font-coiny text-2xl text-rose-500 mt-6">
-    {isAllowListed ? '*Connected wallet is on wanklist' : '*Connected wallet is not wanklisted'}
+    {isPublicSale ? "" : isAllowListed ? '*Connected wallet is on wanklist' : '*Connected wallet is not wanklisted'}
   </p>
 ) } 
 
-{!wallet && (
+{!wallet && !isPublicSale && (
   <p className="font-coiny text-2xl text-rose-500 mt-6">
     *Connect wallet to check wanklist
   </p>
@@ -370,7 +370,7 @@ export default function Mint() {
                 href={`https://snowtrace.io/address/${config.contractAddress}/contract/43114/readProxyContract?chainId=43114`} //testnet.snowtrace.io   ${...}#code
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 mt-4"
+                className="text-rose-400 mt-4"
               >
                 <span className="break-all ...">{config.contractAddress}</span>
               </a>

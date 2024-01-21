@@ -70,7 +70,7 @@ export default function Home() {
         <div className="flex flex-col items-center max-w-4xl w-full">
           <Link href="/mint" passHref>
             <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-500 hover:bg-rose-600 hover:text-white">
-            Mint and Check WL
+            Mint
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6 ml-2 mt-0.5"

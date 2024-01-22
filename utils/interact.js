@@ -374,7 +374,7 @@ export const getName = async () => { try{
 export const isPublicSaleState = async () => { try{
   const publicSaleStartTime = await nftContractProxy.publicSaleStartTime.call();
   const currentTime = Math.ceil(Date.now() / 1000); // Current time in seconds
-  const isPublicSale = 0;//currentTime >= publicSaleStartTime;
+  const isPublicSale = currentTime >= publicSaleStartTime;
   return isPublicSale;
 }catch (error) {
   console.error('Error with isPublicSaleState interact.js[]', error);
@@ -384,7 +384,7 @@ export const isPresaleState = async () => { try{
   const publicSaleStartTime = await nftContractProxy.publicSaleStartTime.call();
   const presaleSaleStartTime = await nftContractProxy.allowlistStartTime.call();
   const currentTime = Math.ceil(Date.now() / 1000); // Current time in seconds
-  const isPresale = 0;//currentTime < publicSaleStartTime && currentTime >= presaleSaleStartTime;
+  const isPresale = currentTime < publicSaleStartTime && currentTime >= presaleSaleStartTime;
   return isPresale;
 }catch (error) {
   console.error('Error with isPresaleState interact.js[]', error);

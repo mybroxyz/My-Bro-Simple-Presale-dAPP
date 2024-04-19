@@ -17,7 +17,7 @@ export default function Home() {
         <div className="container flex items-center justify-between h-full max-w-5xl mx-auto">
           {/* Logo */}
           <Link href="#">
-            <a className="text-xl font-bold font-coiny md:text-3xl">
+            <a className="text-xl font-bold font-coiny md:text-5xl">
               <span className="pr-2 text-transparent bg-gradient-to-br from-brand-blue to-brand-purple bg-clip-text ">
               </span>
               WeedNFT
@@ -69,7 +69,7 @@ export default function Home() {
       <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
         <div className="flex flex-col items-center w-full max-w-4xl">
           <Link href="/mint" passHref>
-            <a className="inline-flex items-center px-6 mt-16 font-medium text-center rounded font-coiny oy-2 text-m sm:text-2xl md:text-3xl text-rose-500 hover:bg-rose-600 hover:text-white">
+            <a className="inline-flex items-center px-6 mt-16 font-medium text-center rounded font-coiny oy-2 text-m sm:text-2xl md:text-4xl text-rose-500 hover:bg-rose-600 hover:text-white">
             Mint
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,15 +98,17 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center px-4 py-10 text-center text-gray-800 md:items-start font-coiny md:px-0 mt-14" style={{ whiteSpace: 'pre-line' }}>
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-2xl font-bold md:text-4xl">
-              $WEED 404
+              🔥$WEED 404🔥
+      
               </h2>
 
               <p className="mt-6 text-2xl">
-                {`🔥420 $WEED NFTs on Avalanche🔥
+                {`
+                🌿420 $WEED NFTs on Avalanche🌿
                 
-                🌿Tokelist Mint: 4/20, 4:10pm ET, 1 Avax, Max 5🌿
+                💨Tokelist Mint: 4/20, 4:10pm ET, 1 Avax, Max 5💨
 
-                💨Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10💨
+                🍃Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10🍃
 
                 🎉Celebrate halving day with a digital joint! 🎉`}
               </p>

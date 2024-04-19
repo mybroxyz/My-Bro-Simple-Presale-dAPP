@@ -178,7 +178,7 @@ export default function Mint() {
                 Disconnect
               </button>
             )}
-            <h1 className="mt-3 text-3xl font-bold text-transparent uppercase font-coiny md:text-4xl bg-gradient-to-br from-navajoWhite to-browner bg-clip-text">
+            <h1 className="mt-3 text-3xl font-bold text-transparent uppercase font-coiny md:text-5xl bg-gradient-to-br from-navajoWhite to-browner bg-clip-text">
               {paused ? 'Paused' : isPresale ? 'Pre-Sale' : isPublicSale ? 'Public Sale' : "Toking soon"}
             </h1>
 
@@ -272,7 +272,7 @@ export default function Mint() {
                       paused || isMinting || (!isPresale&&!isPublicSale)
                         ? 'bg-browner cursor-not-allowed'
                         : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-rose-400/50'
-                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-2xl text-rose-500  mx-4 tracking-wide`}
+                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-3xl text-rose-500  mx-4 tracking-wide`}
                     disabled={paused || isMinting || (!isPresale&&!isPublicSale)}
                     onClick={isPresale ? presaleMintHandler : publicMintHandler}
                   >
@@ -317,7 +317,7 @@ export default function Mint() {
 ) } 
 
 
-              <h3 className="mt-6 text-xl font-coiny text-navajoWhite">
+              <h3 className="mt-6 text-2xl font-coiny text-navajoWhite">
                 Contract Address :
               </h3>
               <a

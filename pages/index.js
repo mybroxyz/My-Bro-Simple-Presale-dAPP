@@ -6,21 +6,21 @@ import { config } from '../dapp.config'
 
 export default function Home() {
   return (
-    <div className="min-h-screen h-full w-full flex flex-col bg-navajoWhite overflow-hidden">
+    <div className="flex flex-col w-full h-full min-h-screen overflow-hidden bg-navajoWhite">
       <Head>
         <title>{config.title}</title>
         <meta name="description" content={config.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="min-w-full text-gray-800 py-14 px-4 md:px-0">
-        <div className="flex items-center container mx-auto max-w-5xl justify-between h-full">
+      <header className="min-w-full px-4 text-gray-800 py-14 md:px-0">
+        <div className="container flex items-center justify-between h-full max-w-5xl mx-auto">
           {/* Logo */}
           <Link href="#">
-            <a className="font-coiny text-xl md:text-3xl font-bold">
-              <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
+            <a className="text-xl font-bold font-coiny md:text-3xl">
+              <span className="pr-2 text-transparent bg-gradient-to-br from-brand-blue to-brand-purple bg-clip-text ">
               </span>
-              Weekend Wankers NFTs
+              WeedNFT
             </a>
           </Link>
 
@@ -31,7 +31,7 @@ export default function Home() {
 
               <li className="cursor-pointer">
                 <a
-                  href="https://twitter.com/Weekend_Wankers"
+                  href="https://x.com/WeedNFT_420"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -66,10 +66,10 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="h-full w-full container max-w-5xl mx-auto flex flex-col items-center pt-4">
-        <div className="flex flex-col items-center max-w-4xl w-full">
+      <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
+        <div className="flex flex-col items-center w-full max-w-4xl">
           <Link href="/mint" passHref>
-            <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-500 hover:bg-rose-600 hover:text-white">
+            <a className="inline-flex items-center px-6 mt-16 font-medium text-center rounded font-coiny oy-2 text-m sm:text-2xl md:text-3xl text-rose-500 hover:bg-rose-600 hover:text-white">
             Mint
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,25 +88,25 @@ export default function Home() {
             </a>
           </Link>
 
-          <div className="flex flex-col md:flex-row md:space-x-16 space-y-10 items-center mt-20 w-full">
+          <div className="flex flex-col items-center w-full mt-20 space-y-10 md:flex-row md:space-x-16">
             {/* Ape Image */}
             <img
-              src="/images/9.png"
-              className="w-64 h-64 rounded-md object-cover"
+              src="/images/9.gif"
+              className="object-cover w-64 h-64 rounded-md"
             />
 
-            <div className="flex flex-col md:items-start items-center justify-center text-center font-coiny text-gray-800 px-4 md:px-0 py-10 mt-14" style={{ whiteSpace: 'pre-line' }}>
-              <h2 className="font-bold text-2xl md:text-4xl">
-              Introducing the Weekend Wankers Project 
+            <div className="flex flex-col items-center justify-center px-4 py-10 text-center text-gray-800 md:items-start font-coiny md:px-0 mt-14" style={{ whiteSpace: 'pre-line' }}>
+              <h2 className="text-2xl font-bold md:text-4xl">
+              Introducing: $WEED 404 
               </h2>
 
               <p className="mt-6 text-lg">
-                {`1,111 Weekend Wankers on Avalanche
-Wanklist Mint: January 21st, 4:20pm ET, Free for those Wanklisted, Max 1
+                {`420 $WEED NFTs on Avalanche:
+Tokelist Mint: 4/20, 4:10pm ET, 1 Avax, Max 5
 
-Public Mint: January 21st, 4:30pm ET, 1 Avax, Max 10
+Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10
 
-This whole adventure kicked off when a few $avax influencers shared a copy pasta tweet, and their followers joined the fun, posting wallet addresses in the comments without realizing it was all part of a viral joke. That's where our lightbulb moment happened: Why not turn this wave of laughter into a gift of free NFTs for those commenters? With an energetic team by my side, we plunged into a frenzy of art creation, contract forging, and vibrant marketing. Our mission? To mix fun, ignite some wanking chaos, and craft something truly memorable. We're here to shake things up and create an NFT experience that's not just about the laughs but also holds real value. Ready to join the fun?`}
+Celebrate halving day with a digital joint! 🌿🔥🚬`}
               </p>
             </div>
           </div>

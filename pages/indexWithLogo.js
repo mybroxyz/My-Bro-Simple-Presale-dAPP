@@ -6,19 +6,19 @@ import { config } from '../dapp.config'
 
 export default function Home() {
   return (
-    <div className="min-h-screen h-full w-full flex flex-col bg-navajoWhite overflow-hidden">
+    <div className="flex flex-col w-full h-full min-h-screen overflow-hidden bg-navajoWhite">
       <Head>
         <title>{config.title}</title>
         <meta name="description" content={config.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="min-w-full text-gray-800 py-14 px-4 md:px-0">
-        <div className="flex items-center container mx-auto max-w-5xl justify-between h-full">
+      <header className="min-w-full px-4 text-gray-800 py-14 md:px-0">
+        <div className="container flex items-center justify-between h-full max-w-5xl mx-auto">
           {/* Logo */}
           <Link href="#">
-            <a className="font-coiny text-xl md:text-3xl font-bold">
-              <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
+            <a className="text-xl font-bold font-coiny md:text-3xl">
+              <span className="pr-2 text-transparent bg-gradient-to-br from-brand-blue to-brand-purple bg-clip-text ">
               </span>
               Weekend Wankers NFTs
             </a>
@@ -66,10 +66,10 @@ d="M31.287 0H60.9294L37.859 49.4941C35.8401 53.8252 34.8307 55.9908 35.1365 57.6
         </div>
       </header>
 
-      <div className="h-full w-full container max-w-5xl mx-auto flex flex-col items-center pt-4">
-        <div className="flex flex-col items-center max-w-4xl w-full">
+      <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
+        <div className="flex flex-col items-center w-full max-w-4xl">
           <Link href="/mint" passHref>
-            <a className="mt-16 font-coiny inline-flex items-center px-6 oy-2 text-m sm:text-2xl md:text-3xl font-medium text-center rounded text-rose-400 hover:bg-rose-600 hover:text-white">
+            <a className="inline-flex items-center px-6 mt-16 font-medium text-center rounded font-coiny oy-2 text-m sm:text-2xl md:text-3xl text-rose-400 hover:bg-rose-600 hover:text-white">
               Mint WANKER here
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,15 +88,15 @@ d="M31.287 0H60.9294L37.859 49.4941C35.8401 53.8252 34.8307 55.9908 35.1365 57.6
             </a>
           </Link>
 
-          <div className="flex flex-col md:flex-row md:space-x-16 space-y-10 items-center mt-20 w-full">
+          <div className="flex flex-col items-center w-full mt-20 space-y-10 md:flex-row md:space-x-16">
             {/* Ape Image */}
             <img
-              src="/images/9.png"
-              className="w-64 h-64 rounded-md object-cover"
+              src="/images/9.gif"
+              className="object-cover w-64 h-64 rounded-md"
             />
 
-            <div className="flex flex-col md:items-start items-center justify-center text-center font-coiny text-gray-800 px-4 md:px-0 py-10 mt-14">
-              <h2 className="font-bold text-2xl md:text-4xl">
+            <div className="flex flex-col items-center justify-center px-4 py-10 text-center text-gray-800 md:items-start font-coiny md:px-0 mt-14">
+              <h2 className="text-2xl font-bold md:text-4xl">
                 About Wankers...
               </h2>
 

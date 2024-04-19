@@ -72,8 +72,9 @@ export default function Mint() {
       setTotalMinted(await getTotalMinted())
 
       setPaused(await isPausedState())
-      setIsPublicSale(await isPublicSaleState())
-      const isPresale = await isPresaleState()
+      const isPublic = false//await isPresaleState() abc
+      setIsPublicSale(isPublic)//await isPublicSaleState())  abc
+      const isPresale = false//await isPresaleState() abc
       setIsPresale(isPresale)
 
       setMaxMintAmount(
@@ -140,8 +141,8 @@ export default function Mint() {
         setMaxSupply(await getMaxSupply());
         setTotalMinted(await getTotalMinted());
         setPaused(await isPausedState());
-        setIsPublicSale(await isPublicSaleState());
-        const presale = await isPresaleState();
+        setIsPublicSale(false)//await isPublicSaleState());
+        const presale = false//await isPresaleState();
         setIsPresale(presale);
 
         setMaxMintAmount(presale ? config.presaleMaxMintAmount : config.maxMintAmount);
@@ -160,11 +161,11 @@ export default function Mint() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center bg-navajoWhite ">
-      <div className="relative w-full h-full flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full h-full min-h-screen overflow-hidden bg-navajoWhite ">
+      <div className="relative flex flex-col items-center justify-center w-full h-full">
 
-        <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10">
-          <div className="relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center w-full h-full px-2 md:px-10">
+          <div className="relative flex flex-col items-center w-full px-2 py-4 rounded-md z-1 md:max-w-3xl bg-gray-900/90 filter backdrop-blur-sm md:px-10">
           {wallet && (
               <button
                 className="absolute right-4 bg-yellow-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
@@ -177,14 +178,14 @@ export default function Mint() {
                 Disconnect
               </button>
             )}
-            <h1 className="font-coiny uppercase font-bold text-3xl md:text-4xl bg-gradient-to-br  from-navajoWhite to-browner bg-clip-text text-transparent mt-3">
-              {paused ? 'Paused' : isPresale ? 'Pre-Sale' : isPublicSale ? 'Public Sale' : "Wanking soon"}
+            <h1 className="mt-3 text-3xl font-bold text-transparent uppercase font-coiny md:text-4xl bg-gradient-to-br from-navajoWhite to-browner bg-clip-text">
+              {paused ? 'Paused' : isPresale ? 'Pre-Sale' : isPublicSale ? 'Public Sale' : "Toking soon"}
             </h1>
 
 
-            <div className="flex flex-col md:flex-row md:space-x-14 w-full mt-10 md:mt-14">
+            <div className="flex flex-col w-full mt-10 md:flex-row md:space-x-14 md:mt-14">
               <div className="relative w-full">
-                <div className="font-coiny z-10 absolute top-2 left-2 opacity-80 filter backdrop-blur-lg text-base px-4 py-2 bg-black border border-brand-purple rounded-md flex items-center justify-center text-white font-semibold">
+                <div className="absolute z-10 flex items-center justify-center px-4 py-2 text-base font-semibold text-white bg-black border rounded-md font-coiny top-2 left-2 opacity-80 filter backdrop-blur-lg border-brand-purple">
                   <p>
                     <span className="text-navajoWhite">{totalMinted}</span> /{' '}
                     {maxSupply}
@@ -192,20 +193,20 @@ export default function Mint() {
                 </div>
 
                 <img
-                  src="/images/13.png"
+                  src="/images/13.gif"
                   className="object-cover w-full sm:h-[280px] md:w-[250px] rounded-md"
                 />
               </div>
 
               <div className="flex flex-col items-center w-full px-4 mt-16 md:mt-0">
-                <div className="font-coiny flex items-center justify-between w-full">
+                <div className="flex items-center justify-between w-full font-coiny">
                   <button
-                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-browner font-bold rounded-md"
+                    className="flex items-center justify-center h-10 font-bold rounded-md w-14 md:w-16 md:h-12 text-brand-background hover:shadow-lg bg-browner"
                     onClick={incrementMintAmount}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 md:h-8 md:w-8"
+                      className="w-6 h-6 md:h-8 md:w-8"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -219,17 +220,17 @@ export default function Mint() {
                     </svg>
                   </button>
 
-                  <p className="flex items-center justify-center flex-1 grow text-center font-bold text-navajoWhite text-3xl md:text-4xl">
+                  <p className="flex items-center justify-center flex-1 text-3xl font-bold text-center grow text-navajoWhite md:text-4xl">
                     {mintAmount}
                   </p>
 
                   <button
-                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-browner font-bold rounded-md"
+                    className="flex items-center justify-center h-10 font-bold rounded-md w-14 md:w-16 md:h-12 text-brand-background hover:shadow-lg bg-browner"
                     onClick={decrementMintAmount}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 md:h-8 md:w-8"
+                      className="w-6 h-6 md:h-8 md:w-8"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -244,12 +245,12 @@ export default function Mint() {
                   </button>
                 </div>
 
-                <p className="text-sm text-rose-200 tracking-widest mt-3">
+                <p className="mt-3 text-sm tracking-widest text-rose-200">
                   Max Mint Amount: {maxMintAmount}
                 </p>
 
-                <div className="border-t border-b py-4 mt-16 w-full">
-                  <div className="w-full text-xl font-coiny flex items-center justify-between text-navajoWhite">
+                <div className="w-full py-4 mt-16 border-t border-b">
+                  <div className="flex items-center justify-between w-full text-xl font-coiny text-navajoWhite">
                     <p>{(!isPresale&&!isPublicSale) ? '' : 'Total'}</p>
 
                     <div className="flex items-center space-x-3">
@@ -279,7 +280,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="font-coiny mt-12 w-full bg-gradient-to-br from-browner to-navajoWhite shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-rose-400/50 mx-4 tracking-wide"
+                    className="w-full px-6 py-3 mx-4 mt-12 text-2xl tracking-wide text-white rounded-md shadow-lg font-coiny bg-gradient-to-br from-browner to-navajoWhite hover:shadow-rose-400/50"
                     onClick={() => connect()}
                   >
                     Connect Wallet
@@ -302,28 +303,28 @@ export default function Mint() {
             )}
 
             {/* Contract Address */}
-            <div className="border-t border-navajoWhite flex flex-col items-center mt-10 py-2 w-full">
+            <div className="flex flex-col items-center w-full py-2 mt-10 border-t border-navajoWhite">
             {wallet && (
-  <p className="font-coiny text-2xl text-rose-500 mt-6">
+  <p className="mt-6 text-2xl font-coiny text-rose-500">
     {isPublicSale ? '' : ''}
   </p>
 ) } 
 
 {!wallet && !isPublicSale && (
-  <p className="font-coiny text-2xl text-rose-500 mt-6">
+  <p className="mt-6 text-2xl font-coiny text-rose-500">
      
   </p>
 ) } 
 
 
-              <h3 className="font-coiny text-xl text-navajoWhite mt-6">
+              <h3 className="mt-6 text-xl font-coiny text-navajoWhite">
                 Contract Address :
               </h3>
               <a
                 href={`https://snowtrace.io/address/${config.contractAddress}/contract/43114/readProxyContract?chainId=43114`} //testnet.snowtrace.io   ${...}#code
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-rose-400 mt-4"
+                className="mt-4 text-rose-400"
               >
                 <span className="break-all ...">{config.contractAddress}</span>
               </a>

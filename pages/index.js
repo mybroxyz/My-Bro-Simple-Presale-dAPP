@@ -96,21 +96,24 @@ export default function Home() {
             />
 
             <div className="flex flex-col items-center justify-center px-4 py-10 text-center text-gray-800 md:items-start font-coiny md:px-0 mt-14" style={{ whiteSpace: 'pre-line' }}>
+            <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-2xl font-bold md:text-4xl">
-              Introducing: $WEED 404 
+              $WEED 404
               </h2>
 
-              <p className="mt-6 text-lg">
-                {`420 $WEED NFTs on Avalanche:
-Tokelist Mint: 4/20, 4:10pm ET, 1 Avax, Max 5
+              <p className="mt-6 text-2xl">
+                {`🔥420 $WEED NFTs on Avalanche🔥
+                
+                🌿Tokelist Mint: 4/20, 4:10pm ET, 1 Avax, Max 5🌿
 
-Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10
+                💨Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10💨
 
-Celebrate halving day with a digital joint! 🌿🔥🚬`}
+                🎉Celebrate halving day with a digital joint! 🎉`}
               </p>
             </div>
           </div>
-        </div>
+          </div>
+          </div>
       </div>
     </div>
   )

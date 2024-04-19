@@ -115,7 +115,7 @@ export default function Home() {
               <p className="mt-12 text-xl">
               {`*4.20% of all mint proceeds will be used to buy and burn $COQ and $KONG!
                 
-                *20% of minted supply will be used to make LP on TJ`}
+                *20% of minted supply will be used to make LP on TJ!`}
               </p>
             </div>
           </div>

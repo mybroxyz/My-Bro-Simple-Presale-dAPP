@@ -1,6 +1,6 @@
 const config = {
-  title: 'Weekend Wankers',
-  description: 'WANKERS',
+  title: '$WEED',
+  description: 'WeedNFT',
   contractAddress: 'Minting Soon',
   maxMintAmount: 5,
   presaleMaxMintAmount: 5,

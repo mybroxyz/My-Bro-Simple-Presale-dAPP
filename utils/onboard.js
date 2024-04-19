@@ -8,10 +8,10 @@ import ApeIcon from '../Ape';
 const injected = injectedModule();
 
 const walletConnectOptions = {
-  projectId: 'WANKERS',
+  projectId: 'WEED',
   requiredChains: [43114],
   optionalChains: [43113],
-  dappUrl: 'http://WeekendWankers.xyz',
+  dappUrl: 'http://WeedNFT.xyz',
 };
 
 const initOnboard = init({
@@ -33,9 +33,9 @@ const initOnboard = init({
 
   ],
   appMetadata: {
-    name: 'Weekend Wankers',
+    name: 'WEED',
     icon: ApeIcon,
-    description: 'WANKERS',
+    description: 'WeedNFT',
     recommendedInjectedWallets: [
       { name: 'MetaMask', url: 'https://metamask.io' },
       { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },

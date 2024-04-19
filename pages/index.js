@@ -106,11 +106,11 @@ export default function Home() {
                 {`
                 🌿420 $WEED NFTs on Avalanche🌿
                 
-                💨Tokelist Mint: 4/20, 4:10pm ET, 1 Avax, Max 5💨
+                💨Tokelist Mint: 4/20, 4:10pm ET, 1 Avax💨
 
-                🍃Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10🍃
+                🍃Public Mint: 4/20, 4:20pm ET, 1 Avax🍃
 
-                🎉Celebrate halving day with a digital joint! 🎉
+                🎉Celebrate halving day with a digital joint by @ChiknOGMeme 🎉
                 
                 `}
               </p>

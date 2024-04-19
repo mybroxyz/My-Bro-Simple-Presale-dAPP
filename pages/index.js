@@ -69,7 +69,7 @@ export default function Home() {
       <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
         <div className="flex flex-col items-center w-full max-w-4xl">
           <Link href="/mint" passHref>
-            <a className="inline-flex items-center px-6 mt-16 font-medium text-center rounded font-coiny oy-2 text-m sm:text-2xl md:text-4xl text-rose-500 hover:bg-rose-600 hover:text-white">
+            <a className="inline-flex items-center px-6 mt-6 font-medium text-center rounded font-coiny oy-2 text-m sm:text-2xl md:text-5xl text-rose-500 hover:bg-rose-600 hover:text-white">
             Mint
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ export default function Home() {
             </a>
           </Link>
 
-          <div className="flex flex-col items-center w-full mt-20 space-y-10 md:flex-row md:space-x-16">
+          <div className="flex flex-col items-center w-full mt-2 space-y-10 md:flex-row md:space-x-16">
             {/* Ape Image */}
             <img
               src="/images/9.gif"
@@ -110,7 +110,14 @@ export default function Home() {
 
                 🍃Public Mint: 4/20, 4:20pm ET, 1 Avax, Max 10🍃
 
-                🎉Celebrate halving day with a digital joint! 🎉`}
+                🎉Celebrate halving day with a digital joint! 🎉
+                
+                `}
+              </p>
+              <p className="mt-6 text-xl">
+              {`*4.20% of all mint proceeds will be used to buy and burn $COQ and $KONG!
+                
+                *20% of minted supply will be used to make LP on TJ`}
               </p>
             </div>
           </div>

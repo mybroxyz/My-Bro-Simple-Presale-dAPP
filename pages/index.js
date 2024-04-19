@@ -95,26 +95,24 @@ export default function Home() {
               className="object-cover w-64 h-64 rounded-md"
             />
 
-            <div className="flex flex-col items-center justify-center px-4 py-10 text-center text-gray-800 md:items-start font-coiny md:px-0 mt-14" style={{ whiteSpace: 'pre-line' }}>
+            <div className="flex flex-col items-center justify-center px-4 py-8 mt-10 text-center text-gray-800 md:items-start font-coiny md:px-0" style={{ whiteSpace: 'pre-line' }}>
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-2xl font-bold md:text-4xl">
               🔥$WEED 404🔥
       
               </h2>
 
-              <p className="mt-6 text-2xl">
-                {`
-                🌿420 $WEED NFTs on Avalanche🌿
+              <p className="mt-16 text-2xl">
+                {`🌿420 $WEED NFTs on Avalanche🌿
                 
                 💨Tokelist Mint: 4/20, 4:10pm ET, 1 Avax💨
 
                 🍃Public Mint: 4/20, 4:20pm ET, 1 Avax🍃
 
                 🎉Celebrate halving day with a digital joint by @ChiknOGMeme 🎉
-                
                 `}
               </p>
-              <p className="mt-6 text-xl">
+              <p className="mt-12 text-xl">
               {`*4.20% of all mint proceeds will be used to buy and burn $COQ and $KONG!
                 
                 *20% of minted supply will be used to make LP on TJ`}

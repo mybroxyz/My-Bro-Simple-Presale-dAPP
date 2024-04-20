@@ -72,9 +72,9 @@ export default function Mint() {
       setTotalMinted(await getTotalMinted())
 
       setPaused(await isPausedState())
-      const isPublic = false//await isPresaleState() abc
-      setIsPublicSale(isPublic)//await isPublicSaleState())  abc
-      const isPresale = false//await isPresaleState() abc
+      const isPublic = await isPresaleState() //false
+      setIsPublicSale(await isPublicSaleState()) //isPublic)
+      const isPresale = await isPresaleState() //false
       setIsPresale(isPresale)
 
       setMaxMintAmount(

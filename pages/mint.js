@@ -168,7 +168,7 @@ export default function Mint() {
           <div className="relative flex flex-col items-center w-full px-2 py-4 rounded-md z-1 md:max-w-3xl bg-gray-900/90 filter backdrop-blur-sm md:px-10">
           {wallet && (
               <button
-                className="absolute right-4 bg-browner transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
+                className="absolute right-4 bg-browner transition duration-200 ease-in-out font-chalk border-2 border-green-100 shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-green-100 tracking-wide uppercase"
                 onClick={() =>
                   disconnect({
                     label: wallet.label

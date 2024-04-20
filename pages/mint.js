@@ -250,7 +250,7 @@ export default function Mint() {
                 </p>
 
                 <div className="w-full py-4 mt-16 border-t border-b">
-                  <div className="flex items-center justify-between w-full text-xl font-coiny text-navajoWhite">
+                  <div className="flex items-center justify-between w-full text-xl text-navajoWhite">
                     <p>{(!isPresale&&!isPublicSale) ? '' : 'Total'}</p>
 
                     <div className="flex items-center space-x-3">

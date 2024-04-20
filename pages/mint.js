@@ -245,7 +245,7 @@ export default function Mint() {
 
                 </div>
 
-                <p className="mt-3 text-sm tracking-widest text-green-100">
+                <p className="mt-3 font-bold text-green-100 text-m trackig-widest">
                   Max Mint Amount: {maxMintAmount}
                 </p>
 

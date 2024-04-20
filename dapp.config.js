@@ -1,7 +1,7 @@
 const config = {
   title: '$WEED',
   description: 'WeedNFT',
-  contractAddress: '0xc368a79e9C0646D78780d8F2Ab5C62A9C11B52A2',
+  contractAddress: '0xb92A5f94466305659976e95c98131B86D8982375',
   maxMintAmount: 10,
   presaleMaxMintAmount: 5,
   presalePrice: 0.420,

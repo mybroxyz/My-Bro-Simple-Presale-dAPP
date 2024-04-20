@@ -141,8 +141,8 @@ export default function Mint() {
         setMaxSupply(await getMaxSupply());
         setTotalMinted(await getTotalMinted());
         setPaused(await isPausedState());
-        setIsPublicSale(false)//await isPublicSaleState());
-        const presale = false//await isPresaleState();
+        setIsPublicSale(await isPublicSaleState()); //false)//
+        const presale = await isPresaleState(); //false//
         setIsPresale(presale);
 
         setMaxMintAmount(presale ? config.presaleMaxMintAmount : config.maxMintAmount);

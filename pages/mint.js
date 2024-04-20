@@ -200,8 +200,31 @@ export default function Mint() {
 
               <div className="flex flex-col items-center w-full px-4 mt-16 md:mt-0">
                 <div className="flex items-center justify-between w-full font-coiny">
+
+                <button
+                    className="flex items-center justify-center h-10 font-bold text-green-100 rounded-md w-14 md:w-16 md:h-12 hover:shadow-lg bg-browner"
+                    onClick={decrementMintAmount}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6 md:h-8 md:w-8"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M18 12H6"
+                      />
+                    </svg>
+                  </button>
+                  <p className="flex items-center justify-center flex-1 text-3xl font-bold text-center text-green-100 grow md:text-4xl">
+                    {mintAmount}
+                  </p>
                   <button
-                    className="flex items-center justify-center h-10 font-bold rounded-md w-14 md:w-16 md:h-12 text-brand-background hover:shadow-lg bg-browner"
+                    className="flex items-center justify-center h-10 font-bold text-green-100 rounded-md w-14 md:w-16 md:h-12 hover:shadow-lg bg-browner"
                     onClick={incrementMintAmount}
                   >
                     <svg
@@ -220,29 +243,6 @@ export default function Mint() {
                     </svg>
                   </button>
 
-                  <p className="flex items-center justify-center flex-1 text-3xl font-bold text-center grow text-navajoWhite md:text-4xl">
-                    {mintAmount}
-                  </p>
-
-                  <button
-                    className="flex items-center justify-center h-10 font-bold rounded-md w-14 md:w-16 md:h-12 text-brand-background hover:shadow-lg bg-browner"
-                    onClick={decrementMintAmount}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6 md:h-8 md:w-8"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M18 12H6"
-                      />
-                    </svg>
-                  </button>
                 </div>
 
                 <p className="mt-3 text-sm tracking-widest text-green-100">
@@ -260,7 +260,7 @@ export default function Mint() {
                         {(!isPresale&&!isPublicSale) ? '' : 'AVAX'}
 
                       </p>{' '}
-                      <span className="text-gray-400">{(!isPresale&&!isPublicSale) ? '' : '+ GAS'}</span>
+                      <span className="text-green-100">{(!isPresale&&!isPublicSale) ? '' : '+ GAS'}</span>
                     </div>
                   </div>
                 </div>
@@ -317,7 +317,7 @@ export default function Mint() {
 ) } 
 
 
-              <h3 className="mt-6 text-2xl font-coiny text-navajoWhite">
+              <h3 className="mt-6 text-2xl text-green-100 font-coiny">
                 Contract Address :
               </h3>
               <a

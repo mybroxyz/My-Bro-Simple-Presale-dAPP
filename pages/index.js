@@ -17,7 +17,7 @@ export default function Home() {
         <div className="container flex items-center justify-between h-full max-w-5xl mx-auto">
           {/* Logo */}
           <Link href="#">
-            <a className="text-xl font-bold font-coiny md:text-5xl">
+            <a className="text-3xl font-bold font-coiny md:text-5xl">
               <span className="pr-2 text-transparent bg-gradient-to-br from-brand-blue to-brand-purple bg-clip-text ">
               </span>
               WeedNFT
@@ -51,7 +51,7 @@ export default function Home() {
               <li className="cursor-pointer">
                 <a href="https://joepegs.com/" target="_blank" rel="noreferrer">
                   <svg
-                    className="w-6 h-6 md:w-32 md:h-8"
+                    className="w-24 h-6 md:w-32 md:h-8"
                     viewBox="0 0 120 30"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -105,9 +105,11 @@ export default function Home() {
               <p className="mt-16 text-2xl">
                 {`🌿420 $WEED NFTs on Avalanche🌿
                 
-                💨Tokelist Mint: 4/20, 4:10pm ET, 1 Avax💨
+                💨Tokelist Mint: 4/20, 4:20pm ET, 0.420 Avax💨
 
-                🍃Public Mint: 4/20, 4:20pm ET, 1 Avax🍃
+                🍃Public Mint: 4/20, 4:30pm ET, 0.69 Avax🍃
+
+                🌳TJ IDO Launch: ??, ??, 1 AVAX🌳
 
                 🎉Celebrate halving day with a digital joint by @ChiknOGMeme 🎉
                 `}
@@ -115,7 +117,7 @@ export default function Home() {
               <p className="mt-12 text-xl">
               {`*4.20% of all mint proceeds will be used to buy and burn $COQ and $KONG!
                 
-                *20% of minted supply will be used to make LP on TJ!`}
+                ~10% of minted supply will be used to make LP on TJ`}
               </p>
             </div>
           </div>

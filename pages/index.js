@@ -69,7 +69,7 @@ export default function Home() {
       <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
         <div className="flex flex-col items-center w-full max-w-4xl">
           <Link href="/mint" passHref>
-            <a className="inline-flex items-center px-6 mt-6 mb-4 ml-6 text-3xl font-medium text-center rounded font-coiny oy-2 sm:text-2xl md:text-5xl text-rose-400 hover:bg-rose-600 hover:text-green-100">
+            <a className="inline-flex items-center px-6 mt-6 mb-4 ml-6 text-3xl font-medium text-center rounded font-coiny oy-2 sm:text-2xl md:text-5xl text-rose-600 hover:bg-rose-600 hover:text-green-100">
             Mint
               <svg
                 xmlns="http://www.w3.org/2000/svg"

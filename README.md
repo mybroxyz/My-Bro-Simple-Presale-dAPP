@@ -6,8 +6,8 @@ Swapped Google coiny font to another pixel font in global.css
 tailwind.config.js set colors my navajo white is swapped for greens
 public/images has images
 utils/onboard.js chain IDs
-utils/interact.js all the contract interactions defined
-pages/mint.js I have a flag forcing mint states to false currently since contract not yet deployed which dapp doesn't account for
+utils/interact.js all the contract interactions defined, testnet vs mainnet snowscan
+pages/mint.js I have a flag forcing mint states to false currently since contract not yet deployed which dapp doesn't account for, snowscan testnet
 Add a wl checker and update Joepegs link with our own collection link
 
 

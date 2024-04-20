@@ -446,7 +446,7 @@ const tx = {
   to: config.contractAddress,
   from: window.ethereum.selectedAddress,
   value: parseInt(
-    web3.utils.toWei((0 * mintAmount).toFixed(18), 'ether')
+    web3.utils.toWei((config.presalePrice * mintAmount).toFixed(18), 'ether')
   ).toString(16), // hex
   data: nftContract.methods.allowlistMint(mintAmount).encodeABI(),
   nonce: nonce.toString(16)
@@ -495,7 +495,7 @@ const tx = {
   to: config.contractAddress,
   from: window.ethereum.selectedAddress,
   value: parseInt(
-    web3.utils.toWei((config.price * mintAmount).toFixed(18), 'ether')
+    web3.utils.toWei((config.publicPrice * mintAmount).toFixed(18), 'ether')
   ).toString(16), // hex
   data: nftContract.methods.publicSaleMint(mintAmount).encodeABI(),
   nonce: nonce.toString(16)
@@ -511,7 +511,7 @@ const tx = {
     return {
       success: true,
       status: (
-        <a href={`https://snowtrace.io/tx/${txHash}`} target="_blank">  //testnet.snowtrace.io
+        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  //testnet.snowtrace.io
           <p>✅ Check out your transaction on Snowtrace:</p>
           <p>{`https://snowtrace.io/tx/${txHash}`}</p>
         </a>

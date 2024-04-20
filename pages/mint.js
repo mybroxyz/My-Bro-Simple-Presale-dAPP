@@ -220,7 +220,7 @@ export default function Mint() {
                       />
                     </svg>
                   </button>
-                  <p className="flex items-center justify-center flex-1 text-3xl font-bold text-center text-green-100 grow md:text-4xl">
+                  <p className="flex items-center justify-center flex-1 font-sans text-3xl font-bold text-center text-green-100 grow md:text-4xl">
                     {mintAmount}
                   </p>
                   <button
@@ -245,8 +245,8 @@ export default function Mint() {
 
                 </div>
 
-                <p className="mt-3 font-bold text-green-100 text-m trackig-widest">
-                  Max Mint Amount: {maxMintAmount}
+                <p className="mt-3 font-bold tracking-widest text-green-100 text-m font-coiny">
+                  Max Mint Amount: <span className="font-sans">{maxMintAmount}</span>
                 </p>
 
                 <div className="w-full py-4 mt-16 border-t border-b">
@@ -255,7 +255,7 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p>
-                      {(!isPresale && !isPublicSale && wallet) ? `` : (isPresale && !isPublicSale) ? '0' : (!isPresale && isPublicSale) ? Number.parseFloat(config.price * mintAmount).toFixed(0) : ''}
+                      {(!isPresale && !isPublicSale && wallet) ? `` : (isPresale && !isPublicSale) ? Number.parseFloat(config.presalePrice * mintAmount).toFixed(0) : (!isPresale && isPublicSale) ? Number.parseFloat(config.publicPrice * mintAmount).toFixed(0) : ''}
 {' '}
                         {(!isPresale&&!isPublicSale) ? '' : 'AVAX'}
 
@@ -321,7 +321,7 @@ export default function Mint() {
                 Contract Address :
               </h3>
               <a
-                href={`https://snowtrace.io/address/${config.contractAddress}/contract/43114/readProxyContract?chainId=43114`} //testnet.snowtrace.io   ${...}#code
+                href={`https://testnet.snowtrace.io/address/${config.contractAddress}/contract/43114/readProxyContract?chainId=43114`} //testnet.snowtrace.io   ${...}#code
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 text-green-100"

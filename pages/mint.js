@@ -168,7 +168,7 @@ export default function Mint() {
           <div className="relative flex flex-col items-center w-full px-2 py-4 rounded-md z-1 md:max-w-3xl bg-gray-900/90 filter backdrop-blur-sm md:px-10">
           {wallet && (
               <button
-                className="absolute right-4 bg-yellow-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
+                className="absolute right-4 bg-browner transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
                 onClick={() =>
                   disconnect({
                     label: wallet.label
@@ -185,7 +185,7 @@ export default function Mint() {
 
             <div className="flex flex-col w-full mt-10 md:flex-row md:space-x-14 md:mt-14">
               <div className="relative w-full">
-                <div className="absolute z-10 flex items-center justify-center px-4 py-2 text-base font-semibold text-white bg-black border rounded-md font-coiny top-2 left-2 opacity-80 filter backdrop-blur-lg border-brand-purple">
+                <div className="absolute z-10 flex items-center justify-center px-4 py-2 text-base font-semibold text-green-100 bg-black border rounded-md font-coiny top-2 right-16 opacity-80 filter backdrop-blur-lg border-brand-purple">
                   <p>
                     <span className="text-navajoWhite">{totalMinted}</span> /{' '}
                     {maxSupply}
@@ -245,7 +245,7 @@ export default function Mint() {
                   </button>
                 </div>
 
-                <p className="mt-3 text-sm tracking-widest text-rose-200">
+                <p className="mt-3 text-sm tracking-widest text-green-100">
                   Max Mint Amount: {maxMintAmount}
                 </p>
 
@@ -272,7 +272,7 @@ export default function Mint() {
                       paused || isMinting || (!isPresale&&!isPublicSale)
                         ? 'bg-browner cursor-not-allowed'
                         : 'bg-gradient-to-br from-navajoWhite to-browner shadow-lg hover:shadow-rose-400/50'
-                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-3xl text-rose-500  mx-4 tracking-wide`}
+                    } font-coiny mt-12 w-full px-6 py-3 rounded-md text-3xl text-green-100  mx-4 tracking-wide`}
                     disabled={paused || isMinting || (!isPresale&&!isPublicSale)}
                     onClick={isPresale ? presaleMintHandler : publicMintHandler}
                   >
@@ -280,7 +280,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="w-full px-6 py-3 mx-4 mt-12 text-2xl tracking-wide text-white rounded-md shadow-lg font-coiny bg-gradient-to-br from-browner to-navajoWhite hover:shadow-rose-400/50"
+                    className="w-full px-6 py-3 mx-4 mt-12 text-2xl tracking-wide text-green-100 rounded-md shadow-lg font-coiny bg-gradient-to-br from-browner to-navajoWhite hover:shadow-rose-400/50"
                     onClick={() => connect()}
                   >
                     Connect Wallet
@@ -296,7 +296,7 @@ export default function Mint() {
                   status.success ? 'border-green-500' : 'border-brand-pink-400 '
                 } rounded-md text-start h-full px-4 py-4 w-full mx-auto mt-8 md:mt-4"`}
               >
-                <div className="flex flex-col space-y-2 text-white text-sm md:text-base break-words ...">
+                <div className="flex flex-col space-y-2 text-green-100 text-sm md:text-base break-words ...">
                   {status.message}
                 </div>
               </div>
@@ -305,13 +305,13 @@ export default function Mint() {
             {/* Contract Address */}
             <div className="flex flex-col items-center w-full py-2 mt-10 border-t border-navajoWhite">
             {wallet && (
-  <p className="mt-6 text-2xl font-coiny text-rose-500">
+  <p className="mt-6 text-2xl text-green-100 font-coiny">
     {isPublicSale ? '' : ''}
   </p>
 ) } 
 
 {!wallet && !isPublicSale && (
-  <p className="mt-6 text-2xl font-coiny text-rose-500">
+  <p className="mt-6 text-2xl text-green-100 font-coiny">
      
   </p>
 ) } 
@@ -324,7 +324,7 @@ export default function Mint() {
                 href={`https://snowtrace.io/address/${config.contractAddress}/contract/43114/readProxyContract?chainId=43114`} //testnet.snowtrace.io   ${...}#code
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 text-rose-400"
+                className="mt-4 text-green-100"
               >
                 <span className="break-all ...">{config.contractAddress}</span>
               </a>

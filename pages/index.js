@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="min-w-full px-4 text-gray-800 py-14 md:px-0">
+      <header className="min-w-full px-4 text-green-100 py-14 md:px-0">
         <div className="container flex items-center justify-between h-full max-w-5xl mx-auto">
           {/* Logo */}
           <Link href="#">
@@ -69,7 +69,7 @@ export default function Home() {
       <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
         <div className="flex flex-col items-center w-full max-w-4xl">
           <Link href="/mint" passHref>
-            <a className="inline-flex items-center px-6 mt-6 mb-4 ml-6 text-3xl font-medium text-center rounded font-coiny oy-2 sm:text-2xl md:text-5xl text-rose-500 hover:bg-rose-600 hover:text-white">
+            <a className="inline-flex items-center px-6 mt-6 mb-4 ml-6 text-3xl font-medium text-center rounded font-coiny oy-2 sm:text-2xl md:text-5xl text-rose-400 hover:bg-rose-600 hover:text-green-100">
             Mint
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export default function Home() {
               className="object-cover w-64 h-64 rounded-md"
             />
 
-            <div className="flex flex-col items-center justify-center px-4 py-8 mt-10 text-center text-gray-800 md:items-start font-coiny md:px-0" style={{ whiteSpace: 'pre-line' }}>
+            <div className="flex flex-col items-center justify-center px-4 py-8 mt-10 text-center text-green-100 md:items-start font-coiny md:px-0" style={{ whiteSpace: 'pre-line' }}>
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-2xl font-bold md:text-4xl">
               🔥$WEED 404🔥

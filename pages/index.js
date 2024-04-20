@@ -109,15 +109,12 @@ export default function Home() {
 
                 🍃Public Mint: 4/20, 4:30pm ET, 0.69 Avax🍃
 
-                🌳TJ IDO Launch: ??, ??, 1 AVAX🌳
-
                 🎉Celebrate halving day with a digital joint by @ChiknOGMeme 🎉
                 `}
               </p>
               <p className="mt-12 text-xl">
               {`*4.20% of all mint proceeds will be used to buy and burn $COQ and $KONG!
-                
-                ~10% of minted supply will be used to make LP on TJ`}
+              `}
               </p>
             </div>
           </div>

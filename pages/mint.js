@@ -255,7 +255,7 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p>
-                      {(!isPresale && !isPublicSale && wallet) ? `` : (isPresale && !isPublicSale) ? Number.parseFloat(config.presalePrice * mintAmount).toFixed(0) : (!isPresale && isPublicSale) ? Number.parseFloat(config.publicPrice * mintAmount).toFixed(0) : ''}
+                      {(!isPresale && !isPublicSale && wallet) ? `` : (isPresale && !isPublicSale) ? Number.parseFloat(config.presalePrice * mintAmount).toFixed(2) : (!isPresale && isPublicSale) ? Number.parseFloat(config.publicPrice * mintAmount).toFixed(2) : ''}
 {' '}
                         {(!isPresale&&!isPublicSale) ? '' : 'AVAX'}
 

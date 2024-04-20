@@ -1,3 +1,17 @@
+.env contract address and mint info
+
+Ape.js edit svg word to ticker
+Search repo for WEED
+Swapped Google coiny font to another pixel font in global.css
+tailwind.config.js set colors my navajo white is swapped for greens
+public/images has images
+utils/onboard.js chain IDs
+utils/interact.js all the contract interactions defined
+pages/mint.js I have a flag forcing mint states to false currently since contract not yet deployed which dapp doesn't account for
+Add a wl checker and update Joepegs link with our own collection link
+
+
+
 # Bored Ape NFT Minting dApp ( Udemy The Fullstack Nft Minting Website Course)
 
 This a complete example of fullstack NFT minting dApp. **BoredApe** is built with the purpose of providing an _entry point for future NFT Minting Website_ projects.

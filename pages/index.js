@@ -49,7 +49,7 @@ export default function Home() {
               </li>
 
               <li className="cursor-pointer">
-                <a href="https://joepegs.com/" target="_blank" rel="noreferrer">
+                <a href="https://joepegs.com/collections/avalanche/0xb92a5f94466305659976e95c98131b86d8982375" target="_blank" rel="noreferrer">
                   <svg
                     className="w-24 h-6 md:w-32 md:h-8"
                     viewBox="0 0 120 30"

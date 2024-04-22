@@ -452,6 +452,7 @@ const tx = {
   nonce: nonce.toString(16)
 };
 
+//snowtrace.io
   try {
     const txHash = await window.ethereum.request({
       method: 'eth_sendTransaction',
@@ -461,7 +462,7 @@ const tx = {
     return {
       success: true,
       status: (
-        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  //snowtrace.io
+        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  
           <p>✅ Check out your transaction on Snowtrace:</p>
           <p>{`https://testnet.snowtrace.io/tx/${txHash}`}</p>
         </a>
@@ -508,10 +509,11 @@ const tx = {
       params: [tx]
     })
 
+//testnet.snowtrace.io
     return {
       success: true,
       status: (
-        <a href={`https://snowtrace.io/tx/${txHash}`} target="_blank">  //testnet.snowtrace.io
+        <a href={`https://snowtrace.io/tx/${txHash}`} target="_blank">  
           <p>✅ Check out your transaction on Snowtrace:</p>
           <p>{`https://snowtrace.io/tx/${txHash}`}</p>
         </a>

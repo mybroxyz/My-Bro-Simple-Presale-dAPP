@@ -2,6 +2,7 @@
 //Created by @0xJelle for @WenLaunchInfo to wrap $BANANAZ.
 
 
+
 /*
 
     ___  ________  ___  ________   _________  ___   ___  ________  ___   ___     
@@ -25,8 +26,8 @@ import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 
 
 contract Joint404Hash_Taxed is ReentrancyGuard{
-    address constant ERC721_ADDRESS = 0xabd39EFEbB421bAf3609B6b8fb588466D40e48dd; //NFT address.
-    address constant ERC20_ADDRESS = 0x417Bf7C9dc415FEEb693B6FE313d1186C692600F; //Token address.
+    address constant ERC721_ADDRESS = 0xA4ca90E5692639a9A9B9579A797211dCbDbC6AB7; //NFT address.
+    address constant ERC20_ADDRESS = 0x0dB7ab53CadEbf9dc09D1Ae6F3E8aDfABBA8C587; //Token address.
 
     uint256 constant TOKENS_PER_NFT_GWEI = 1000000 ether; //1 Million whole tokens per NFT.
     uint256 constant TOTAL_SUPPLY = 420; //NFT total supply.
@@ -79,10 +80,11 @@ contract Joint404Hash_Taxed is ReentrancyGuard{
         require(inputLength_ <= MAX_NFT_TRANSFERS, "Amount exceeds max NFT deposit limit of 200 NFTs per transaction");
         //require(inputLength_ * TOKENS_PER_NFT_GWEI <= ITOKEN.balanceOf(address(this)), "Not enough tokens available now"); //If less ERC20 seeded into contract than circulating NFT supply.
         address msgSender_ = msg.sender;
+        address addressThis_ = address(this);
         uint16[] storage nftArray_ = nftArray; // Storage pointer to save gas on the multiple writes in the following loop.
 
         for (uint256 i = 0; i < inputLength_; ++i) {
-            nftTransferFrom(msgSender_, address(this), idArray_[i]);
+            nftTransferFrom(msgSender_, addressThis_, idArray_[i]);
             nftArray_.push(idArray_[i]);
         }
 
@@ -107,6 +109,7 @@ contract Joint404Hash_Taxed is ReentrancyGuard{
         /// @param nftsOwed_ The number of NFTs owed to the user.
     function withdrawNFTs(uint256 nftsOwed_) private {
         address msgSender_ = msg.sender;
+        address addressThis_ = address(this);
         uint16[] storage nftArray_ = nftArray; //Storage pointer to save gas on the multiple reads in the following loop.
         uint256 pseudoRandom_ = uint(keccak256(abi.encodePacked(msgSender_, block.timestamp, blockhash(block.number)))); //This is not secure randomness, since validators can hack it.
         uint256 nftArrayLength_ = (nftArray_.length);
@@ -115,7 +118,7 @@ contract Joint404Hash_Taxed is ReentrancyGuard{
         for (uint256 i = 0; i < nftsOwed_; ++i) {
             pseudoRandom_ = uint(keccak256(abi.encodePacked(pseudoRandom_, i))); //Make new pseudorandom value on each loop.
             randomIndex_ = pseudoRandom_ % (nftArrayLength_); //Get random index within array length.
-            nftTransferFrom(address(this), msgSender_, nftArray_[randomIndex_]); //Transfer ID at random index to user
+            nftTransferFrom(addressThis_, msgSender_, nftArray_[randomIndex_]); //Transfer ID at random index to user
             nftArray_[randomIndex_] = nftArray_[nftArrayLength_ - 1]; //Overwrite random index with last index
             nftArray_.pop(); //Remove last index
             --nftArrayLength_; //Account for the removed index
@@ -128,7 +131,7 @@ contract Joint404Hash_Taxed is ReentrancyGuard{
         /// @param receiver_ The address of the receiver.
         /// @param tokenId_ The ID of the ERC721 token to transfer.
     function nftTransferFrom(address sender_, address receiver_, uint256 tokenId_) private {
-        INFT.transferFrom(sender_, receiver_, tokenId_);
+        INFT.transferFrom(sender_, receiver_, tokenId_); //We assume the ERC721 will revert if any issue
     }
 
 
@@ -138,8 +141,8 @@ contract Joint404Hash_Taxed is ReentrancyGuard{
         /// @param amount_ The amount of ERC20 tokens to transfer.
     function tokenTransferFrom(address sender_, address receiver_, uint256 amount_) private {
         bool success = ITOKEN.transferFrom(sender_, receiver_, amount_); //Attempt the transfer.
-        if (!success) { //If the transfer failed, get the error message.
-            revert("tokenTransferFrom failed"); // Revert with the error message.
+        if (!success) {
+            revert("tokenTransferFrom failed"); 
         }
     }
 
@@ -149,11 +152,10 @@ contract Joint404Hash_Taxed is ReentrancyGuard{
         /// @param amount_ The amount of ERC20 tokens to transfer.
     function tokenTransfer(address receiver_, uint256 amount_) private {
         bool success = ITOKEN.transfer(receiver_, amount_); //Attempt the transfer.
-        if (!success) { //If the transfer failed, get the error message.
-            revert("tokenTransferFrom failed"); // Revert with the error message.
+        if (!success) {
+            revert("tokenTransferFrom failed"); 
         }
     }
-
 
 
 

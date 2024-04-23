@@ -1,5 +1,6 @@
-//JOINT404-FIFO converts a user's specific NFTs to ERC20 tokens, with a FIFO array method for converting back to ERC721.
+//Joint404FIFO converts a user's specific NFTs to ERC20 tokens, with a FIFO array method for converting back to ERC721.
 //Created by @0xJelle for @ChiknOGMeme to wrap $WEED.
+
 
 
 /*
@@ -24,9 +25,9 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 
 
-contract JOINT404 is ReentrancyGuard{
-    address constant ERC721_ADDRESS = 0x43D218197E8c5FBC0527769821503660861c7045; //NFT address.
-    address constant ERC20_ADDRESS = 0x7C4e30a43ecC4d3231b5B07ed082329020D141F3; //Token address.
+contract Joint404FIFO is ReentrancyGuard{
+    address constant ERC721_ADDRESS = 0x021Fb1C5D7E94885f443F5E8b774c4f097cF4816; //NFT address.
+    address constant ERC20_ADDRESS = 0x49A7e4307482f48B0980a412CEda05039a6DE077; //Token address.
 
     uint256 constant TOKENS_PER_NFT_GWEI = 1000000 ether; //1 Million whole tokens per NFT.
     uint256 constant TOTAL_SUPPLY = 420; //NFT total supply.
@@ -126,96 +127,30 @@ contract JOINT404 is ReentrancyGuard{
         /// @param receiver_ The address of the receiver.
         /// @param tokenId_ The ID of the ERC721 token to transfer.
     function nftTransferFrom(address sender_, address receiver_, uint256 tokenId_) private {
-        try INFT.transferFrom(sender_, receiver_, tokenId_) {
-            // Successful transfer
-        } catch Error(string memory errorCode_) {
-            // Handle error: failed transfer with a known reason
-            revert(string(abi.encodePacked(
-                "Sender: ", sender_, " Receiver: ", receiver_, " TokenID: ", tokenId_,
-                " ERC721 NFT transferFrom unsuccessful: ", errorCode_)));
-        } catch Panic(uint panicCode_) {
-            // Handle panic error: possible out-of-gas or other low-level error with an error code
-            revert(string(abi.encodePacked(
-                "Sender: ", sender_, " Receiver: ", receiver_, " TokenID: ", tokenId_,
-                " ERC721 NFT transferFrom failed with panic error code: ", panicCode_)));
-        } catch (bytes memory lowLevelData_) {
-            // Handle panic error: possible out-of-gas or other low-level error without error code
-            string memory errorMessage_ = cleanBytesToString(lowLevelData_);
-            revert(string(abi.encodePacked(
-                "Sender: ", sender_, " Receiver: ", receiver_, " TokenID: ", tokenId_,
-                " ERC721 NFT transferFrom failed with bytes error: ", errorMessage_)));
-        }
+        INFT.transferFrom(sender_, receiver_, tokenId_); //We assume the ERC721 will revert if any issue
     }
 
 
-    /// @dev Transfers ERC20 tokens from the sender to the receiver.
-    /// @param sender_ The address of the sender.
-    /// @param receiver_ The address of the receiver.
-    /// @param amount_ The amount of ERC20 tokens to transfer.
+        /// @dev Transfers ERC20 tokens from the sender to the receiver.
+        /// @param sender_ The address of the sender.
+        /// @param receiver_ The address of the receiver.
+        /// @param amount_ The amount of ERC20 tokens to transfer.
     function tokenTransferFrom(address sender_, address receiver_, uint256 amount_) private {
-        try ITOKEN.transferFrom(sender_, receiver_, amount_) {
-            // Successful transfer
-        } catch Error(string memory errorCode_) {
-            // Handle error: failed transfer with a known reason
-            revert(string(abi.encodePacked(
-                "Sender: ", sender_, " Receiver: ", receiver_, " Amount: ", amount_,
-                " ERC20 token transferFrom unsuccessful: ", errorCode_)));
-        } catch Panic(uint panicCode_) {
-            // Handle panic error: possible out-of-gas or other low-level error with an error code
-            revert(string(abi.encodePacked(
-                "Sender: ", sender_, " Receiver: ", receiver_, " Amount: ", amount_,
-                " ERC20 token transferFrom failed with panic error code: ", panicCode_)));
-        } catch (bytes memory lowLevelData_) {
-            // Handle panic error: possible out-of-gas or other low-level error without error code
-            string memory errorMessage_ = cleanBytesToString(lowLevelData_);
-            revert(string(abi.encodePacked(
-                "Sender: ", sender_, " Receiver: ", receiver_, " Amount: ", amount_,
-                " ERC20 token transferFrom failed with bytes error: ", errorMessage_)));
+        bool success = ITOKEN.transferFrom(sender_, receiver_, amount_); //Attempt the transfer.
+        if (!success) {
+            revert("tokenTransferFrom failed"); 
         }
     }
 
 
-    /// @dev Transfers ERC20 tokens from the contract to the receiver.
-    /// @param receiver_ The address of the receiver.
-    /// @param amount_ The amount of ERC20 tokens to transfer.
+        /// @dev Transfers ERC20 tokens from the contract to the receiver.
+        /// @param receiver_ The address of the receiver.
+        /// @param amount_ The amount of ERC20 tokens to transfer.
     function tokenTransfer(address receiver_, uint256 amount_) private {
-        try ITOKEN.transfer(receiver_, amount_) {
-            // Successful transfer
-        } catch Error(string memory errorCode_) {
-            // Handle error: failed transfer with a known reason
-            revert(string(abi.encodePacked(
-                "Receiver: ", receiver_, " Amount: ", amount_,
-                " ERC20 token transfer unsuccessful: ", errorCode_)));
-        } catch Panic(uint panicCode_) {
-            // Handle panic error: possible out-of-gas or other low-level error with an error code
-            revert(string(abi.encodePacked(
-                "Receiver: ", receiver_, " Amount: ", amount_,
-                " ERC20 token transfer failed with panic error code: ", panicCode_)));
-        } catch (bytes memory lowLevelData_) {
-            // Handle panic error: possible out-of-gas or other low-level error without error code
-            string memory errorMessage_ = cleanBytesToString(lowLevelData_);
-            revert(string(abi.encodePacked(
-                "Receiver: ", receiver_, " Amount: ", amount_,
-                " ERC20 token transfer failed with bytes error: ", errorMessage_)));
+        bool success = ITOKEN.transfer(receiver_, amount_); //Attempt the transfer.
+        if (!success) {
+            revert("tokenTransferFrom failed"); 
         }
-    }
-
-
-        /// @dev Remove non-string characters to convert bytes to string
-        /// @param data_ The bytes message to clean.
-    function cleanBytesToString(bytes memory data_) internal pure returns (string memory) {
-        uint256 length_ = data_.length;
-        bytes memory validChars_ = new bytes(length_);
-        for (uint256 i = 0; i < length_; i++) {
-            // Check if the byte is within the valid ASCII range
-            if (uint8(data_[i]) >= 32 && uint8(data_[i]) <= 126) {
-                validChars_[i] = data_[i];
-            } else {
-                // Replace invalid characters with a placeholder
-                validChars_[i] = '.';
-            }
-        }
-        return string(validChars_);
     }
 
 

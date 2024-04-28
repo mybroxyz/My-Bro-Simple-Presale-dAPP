@@ -89,13 +89,9 @@ export default function Home() {
               </h2>
 
               <p className="mt-16 text-3xl ">
-                {`🌿420 $WEED NFTs on Avalanche🌿
-                
-                💨Tokelist Mint: 4/20, 4:20pm ET, 0.420 Avax💨
+                {`🌿420 $WEED NFTs on Avalanche!🌿
 
-                🍃Public Mint: 4/20, 4:30pm ET, 0.69 Avax🍃
-
-                🎉Celebrate halving day with a digital joint by @ChiknOGMeme 🎉
+                🎉Celebrate with a digital joint by @ChiknOGMeme 🎉
                 `}
               </p>
               <p className="mt-12 text-3xl">

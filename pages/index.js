@@ -24,7 +24,7 @@ export default function Home() {
             </a>
           </Link>
 
-          {/* Opensea Twitter Discord Links */}
+          {/* Joepegs Twitter Discord Links */}
           <nav aria-label="Contact Menu">
             <ul className="flex items-center space-x-4 md:space-x-6">
 
@@ -68,28 +68,14 @@ export default function Home() {
 
       <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
         <div className="flex flex-col items-center w-full max-w-4xl">
-          <Link href="/mint" passHref>
+          <Link href="/" passHref>
             <a className="inline-flex items-center px-6 mt-6 ml-6 text-4xl font-bold text-center rounded mb- font-coiny oy-2 sm:text-4xl md:text-5xl text-rose-600 hover:bg-rose-600 hover:text-green-100">
-            Mint
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 ml-2 mt-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+            
             </a>
           </Link>
 
           <div className="flex flex-col items-center w-full mt-2 space-y-10 md:flex-row md:space-x-16">
-            {/* Ape Image */}
+            {/* Image */}
             <img
               src="/images/9.gif"
               className="object-cover w-64 h-64 rounded-md"

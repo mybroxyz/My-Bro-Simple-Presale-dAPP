@@ -114,14 +114,10 @@ export default function Presale() {
       const countdown = await getPresaleCountdown()
       setTimer(countdown)
 
-        // Only clear the status if it's "Refreshing..."
-        if (status && status.message === 'Refreshing...') {
-            setStatus(null)
-        }
-        
+      // Clear the "Refreshing..." status
+      setStatus(null)
     } catch (error) {
       console.error('Error fetching presale data:', error)
-      setStatus({ success: false, message: 'Error fetching data.' })
     }
   }
 
@@ -195,9 +191,9 @@ export default function Presale() {
     }
   }
 
-  const refreshData = async () => {
+  const refreshData = () => {
     setStatus({ success: false, message: 'Refreshing...' })
-    await fetchData()
+    fetchData()
   }
 
   // ============== RENDER ==============
@@ -241,18 +237,13 @@ export default function Presale() {
                     Wallet: {wallet.accounts[0].address.slice(0, 6)}...
                     {wallet.accounts[0].address.slice(-4)}
                   </p>
-                  {parseFloat(userTokenBalance) > 0 && (
-                    <p className="text-xs">
-                      BRO: {userTokenBalance}
-                    </p>
-                  )}
                   <p className="text-xs">
-                    AVAX in Wallet: {userWalletAvax}
+                  AVAX: {userWalletAvax} | BRO: {userTokenBalance}
                   </p>
                 </div>
                 <button
                   onClick={() => disconnect({ label: wallet.label })}
-                  className="bg-yellow-900 text-yellow-100 px-3 py-1 rounded text-sm"
+                  className="bg-red-700 text-yellow-100 px-3 py-1 rounded text-sm"
                 >
                   Disconnect
                 </button>
@@ -274,174 +265,137 @@ export default function Presale() {
         <div className="container max-w-5xl mx-auto space-y-10">
           {/* Outer Box */}
           <div className="bg-gray-900/70 backdrop-blur-md rounded-3xl p-10 shadow-lg text-center">
-            
+
             {/* Title / Phase Info */}
             <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 mb-4">
               {phaseLabels[phase] || 'PRESALE'}
             </h2>
             {/* 2-line display: total avax, user deposit */}
-            <div className="flex flex-col md:flex-row items-center md:justify-between text-yellow-200 text-lg md:text-xl mb-6 w-full">
-            <p className="md:text-left text-center w-full md:w-auto">Total AVAX in Presale: {contractAvax}</p>
-            <p className="md:text-right text-center w-full md:w-auto">Your AVAX Deposited: {userAvaxDeposited}</p>
+            <div className="flex flex-col md:flex-row items-center justify-center md:space-x-4 text-yellow-200 text-sm md:text-base mb-6">
+              <p className="mb-2 md:mb-0">Total AVAX in Presale: {contractAvax}</p>
+              <p>Your AVAX Deposited: {userAvaxDeposited}</p>
             </div>
 
-            
+            {/* PHASE-SPECIFIC UI */}
+            {phase === 0 && (
+              <div className="flex flex-col items-center w-full space-y-4 mb-6">
+                <input
+                  type="number"
+                  min="1"
+                  step="0.1"
+                  className="w-60 p-2 rounded border border-gray-00 text-black"
+                  placeholder="Amount in AVAX (min 1)"
+                  value={buyAmount}
+                  onChange={(e) => setBuyAmount(e.target.value)}
+                />
+                <button
+                  onClick={handleBuyPresale}
+                  className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-2xl font-bold"
+                >
+                  Buy Presale
+                </button>
+                <button
+                  onClick={handleWithdrawAllAvax}
+                  className="bg-yellow-900 text-yellow-100 px-4 py-2 rounded"
+                >
+                  Withdraw My AVAX
+                </button>
+                <button
+                  onClick={refreshData}
+                  className="bg-gray-700 text-yellow-100 px-4 py-2 rounded"
+                >
+                  Refresh
+                </button>
+              </div>
+            )}
 
-            {/* Horizontal Line */}
-            <hr className="border-yellow-500 mb-6 w-full" />
+            {phase === 1 && (
+              <div className="flex flex-col items-center w-full space-y-4 mb-6">
+                <p className="text-yellow-100">Presale Ended. Seeding LP now:</p>
+                <button
+                  onClick={handleWithdrawAllAvax}
+                  className="bg-orange-700 text-yellow-100 px-4 py-2 rounded"
+                >
+                  Withdraw All AVAX
+                </button>
+                <button
+                  onClick={handleSeedLP}
+                  className="bg-green-700 text-yellow-100 px-4 py-2 rounded"
+                >
+                  Seed LP
+                </button>
+              </div>
+            )}
 
-            {/* Sub-Box for Buttons and Inputs */}
-            <div className="bg-gray-800/60 p-6 rounded-lg shadow-inner flex flex-col items-center space-y-6">
-              {/* PHASE-SPECIFIC UI */}
-              {phase === 0 && (
-                <div className="flex flex-col items-center w-full space-y-4">
-<input
-  type="number"
-  min="1"
-  max={Math.floor((userWalletAvax - 0.001) * 10) / 10} // Max is user's balance minus gas, rounded down to nearest 0.1
-  step="0.1"
-  className="w-64 p-2 rounded bg-gray-900 border border-gray-600 text-xl text-yellow-100"
-  placeholder="Amount in AVAX (min 1)"
-  value={buyAmount}
-  onChange={(e) => {
-    const inputValue = parseFloat(e.target.value);
-    const maxAmount = Math.floor((userWalletAvax - 0.001) * 10) / 10; // Correctly calculate max based on wallet balance and gas
-    if (inputValue > maxAmount) {
-      setBuyAmount(maxAmount); // Prevent input exceeding max
-    } else if (inputValue < 1) {
-      setBuyAmount(1); // Prevent input below minimum
-    } else {
-      setBuyAmount(e.target.value); // Accept valid input
-    }
-  }}
-/>
-
-
-
-
+            {phase === 2 && (
+              <div className="flex flex-col items-center w-full space-y-4 mb-6">
+                <p className="text-yellow-100">AIRDROP TOKENS PHASE:</p>
+                {!claimed && !airdropDone && (
                   <button
-                    onClick={handleBuyPresale}
-                    className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-2xl font-bold"
+                    onClick={handleClaimTokens}
+                    className="bg-purple-700 text-yellow-100 px-4 py-2 rounded"
                   >
-                    Buy Presale
+                    Claim My Tokens
                   </button>
+                )}
+                {!airdropDone && (
                   <button
-                    onClick={refreshData}
-                    className="bg-gray-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
+                    onClick={handleAirdropAll}
+                    className="bg-blue-700 text-yellow-100 px-4 py-2 rounded"
                   >
-                    Refresh
-                  </button>                  <button
-                    onClick={handleWithdrawAllAvax}
-                    className="bg-yellow-900 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
-                  >
-                    Withdraw My AVAX
+                    Airdrop All
                   </button>
+                )}
+                {airdropDone && (
+                  <p className="text-sm text-green-300">All tokens have been airdropped!</p>
+                )}
+              </div>
+            )}
 
-                </div>
-              )}
+            {phase === 3 && (
+              <div className="flex flex-col items-center w-full space-y-4 mb-6">
+                <p className="text-yellow-100">
+                  WHITELISTED IDO. Countdown to WL end: {timer} s
+                </p>
+                <button
+                  onClick={refreshData}
+                  className="bg-gray-700 text-yellow-100 px-4 py-2 rounded"
+                >
+                  Refresh
+                </button>
+              </div>
+            )}
 
-              {phase === 1 && (
-                <div className="flex flex-col items-center w-full space-y-4">
-                  <p className="text-yellow-100 text-lg md:text-xl">Presale Ended. Seeding LP now:</p>
-                  <button
-                    onClick={handleWithdrawAllAvax}
-                    className="bg-yellow-900 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
+            {phase === 4 && (
+              <div className="flex flex-col items-center w-full space-y-4 mb-6">
+                <p className="text-yellow-100">PUBLIC SALE LIVE!</p>
+                <p className="text-yellow-100">
+                  Total Collected (presale): {contractAvax}
+                </p>
+                <Link href="https://lfj.gg/avalanche/trade" passHref>
+                  <a
+                    className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-xl font-bold"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Withdraw All AVAX
-                  </button>
-                  <button
-                    onClick={handleSeedLP}
-                    className="bg-green-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
-                  >
-                    Seed LP
-                  </button>
-                </div>
-              )}
-
-              {phase === 2 && (
-                <div className="flex flex-col items-center w-full space-y-4">
-                  <p className="text-yellow-100 text-lg md:text-xl">AIRDROP TOKENS PHASE:</p>
-                  {!claimed && !airdropDone && (
-                    <button
-                      onClick={handleClaimTokens}
-                      className="bg-purple-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
-                    >
-                      Claim My Tokens
-                    </button>
-                  )}
-                  {!airdropDone && (
-                    <button
-                      onClick={handleAirdropAll}
-                      className="bg-blue-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
-                    >
-                      Airdrop All
-                    </button>
-                  )}
-                  {airdropDone && (
-                    <p className="text-sm text-green-300">All tokens have been airdropped!</p>
-                  )}
-                </div>
-              )}
-
-              {phase === 3 && (
-                <div className="flex flex-col items-center w-full space-y-4">
-                  <p className="text-yellow-100 text-lg md:text-xl">
-                    WHITELISTED IDO. Countdown to WL end: {timer} s
-                  </p>
-                  {/* Additional whitelist IDO details can be added here */}
-                </div>
-              )}
-
-              {phase === 4 && (
-                <div className="flex flex-col items-center w-full space-y-4">
-                  <p className="text-yellow-100 text-lg md:text-xl">PUBLIC SALE LIVE!</p>
-                  <p className="text-yellow-100 text-lg md:text-xl">
-                    Total Collected (presale): {contractAvax} AVAX
-                  </p>
-                  <Link href="https://lfj.gg/avalanche/trade" passHref>
-                    <a
-                      className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-xl font-bold"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Buy on LFJ.gg
-                    </a>
-                  </Link>
-                </div>
-              )}
-            </div>
+                    Buy on LFJ.gg
+                  </a>
+                </Link>
+              </div>
+            )}
 
             {/* Status Message */}
             {status && (
-              <>
-                {/* Horizontal Line */}
-                <hr className="border-yellow-500 mt-6 w-full" />
-                <div
-                  className={`border ${
-                    status.success ? 'border-green-500' : 'border-red-800'
-                  } rounded-md text-start px-4 py-4 w-full mx-auto mt-4`}
-                >
-                  <div className="flex flex-col space-y-2 text-white text-sm md:text-base break-words">
-                    {status.message}
-                  </div>
-                </div>
-              </>
-            )}
-
-            {/* Contract Address */}
-            <div className="border-t border-yellow-900 flex flex-col items-center mt-10 py-4 w-full">
-              <h3 className="text-xl text-yellow-700 mt-6">
-                Contract Address :
-              </h3>
-              <a
-                href={`https://snowtrace.io/address/0x022688aD1F6Cf140067672f8971A084666B726F8#code`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-yellow-500 mt-4 break-all"
+              <div
+                className={`border ${
+                  status.success ? 'border-green-500' : 'border-red-500'
+                } rounded-md text-start px-4 py-4 w-full mx-auto mt-8 md:mt-4`}
               >
-                0x022688aD1F6Cf140067672f8971A084666B726F8
-              </a>
-            </div>
+                <div className="flex flex-col space-y-2 text-white text-sm md:text-base break-words">
+                  {status.message}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>

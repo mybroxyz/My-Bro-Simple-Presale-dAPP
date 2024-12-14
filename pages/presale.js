@@ -236,7 +236,7 @@ export default function Presale() {
           <div className="flex items-center space-x-4 text-yellow-300">
             {wallet ? (
               <>
-                <div className="hidden md:flex flex-col items-end">
+                <div className="flex flex-col items-end">
                   <p className="text-sm">
                     Wallet: {wallet.accounts[0].address.slice(0, 6)}...
                     {wallet.accounts[0].address.slice(-4)}
@@ -247,7 +247,7 @@ export default function Presale() {
                     </p>
                   )}
                   <p className="text-xs">
-                    AVAX in Wallet: {userWalletAvax}
+                    AVAX: {userWalletAvax}
                   </p>
                 </div>
                 <button
@@ -295,26 +295,26 @@ export default function Presale() {
               {/* PHASE-SPECIFIC UI */}
               {phase === 0 && (
                 <div className="flex flex-col items-center w-full space-y-4">
-<input
-  type="number"
-  min="1"
-  max={Math.floor((userWalletAvax - 0.001) * 10) / 10} // Max is user's balance minus gas, rounded down to nearest 0.1
-  step="0.1"
-  className="w-64 p-2 rounded bg-gray-900 border border-gray-600 text-xl text-yellow-100"
-  placeholder="Amount in AVAX (min 1)"
-  value={buyAmount}
-  onChange={(e) => {
-    const inputValue = parseFloat(e.target.value);
-    const maxAmount = Math.floor((userWalletAvax - 0.001) * 10) / 10; // Correctly calculate max based on wallet balance and gas
-    if (inputValue > maxAmount) {
-      setBuyAmount(maxAmount); // Prevent input exceeding max
-    } else if (inputValue < 1) {
-      setBuyAmount(1); // Prevent input below minimum
-    } else {
-      setBuyAmount(e.target.value); // Accept valid input
-    }
-  }}
-/>
+                    <input
+                    type="number"
+                    min="1"
+                    max={Math.floor((userWalletAvax - 0.001) * 10) / 10} // Max is user's balance minus gas, rounded down to nearest 0.1
+                    step="0.1"
+                    className="w-64 p-2 rounded bg-gray-900 border border-gray-600 text-xl text-yellow-100"
+                    placeholder="Amount in AVAX (min 1)"
+                    value={buyAmount}
+                    onChange={(e) => {
+                        const inputValue = parseFloat(e.target.value);
+                        const maxAmount = Math.floor((userWalletAvax - 0.001) * 10) / 10; // Correctly calculate max based on wallet balance and gas
+                        if (inputValue > maxAmount) {
+                        setBuyAmount(maxAmount); // Prevent input exceeding max
+                        } else if (inputValue < 1) {
+                        setBuyAmount(1); // Prevent input below minimum
+                        } else {
+                        setBuyAmount(e.target.value); // Accept valid input
+                        }
+                    }}
+                    />
 
 
 
@@ -325,12 +325,16 @@ export default function Presale() {
                   >
                     Buy Presale
                   </button>
+
+<button
+  onClick={refreshData}
+  className="bg-gray-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold min-w-[9rem]"
+>
+  Refresh
+</button>
+                
+                  
                   <button
-                    onClick={refreshData}
-                    className="bg-gray-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
-                  >
-                    Refresh
-                  </button>                  <button
                     onClick={handleWithdrawAllAvax}
                     className="bg-yellow-900 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
                   >
@@ -347,7 +351,7 @@ export default function Presale() {
                     onClick={handleWithdrawAllAvax}
                     className="bg-yellow-900 text-yellow-100 px-4 py-2 rounded text-lg font-semibold"
                   >
-                    Withdraw All AVAX
+                    Withdraw My AVAX
                   </button>
                   <button
                     onClick={handleSeedLP}

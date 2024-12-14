@@ -300,7 +300,7 @@ export default function Presale() {
                     min="1"
                     max={Math.floor((userWalletAvax - 0.001) * 10) / 10} // Max is user's balance minus gas, rounded down to nearest 0.1
                     step="0.1"
-                    className="w-64 p-2 rounded bg-gray-900 border border-gray-600 text-xl text-yellow-100"
+                    className="w-64 p-2 rounded bg-gray-900 border border-gray-600 text-2xl text-yellow-100"
                     placeholder="Amount in AVAX (min 1)"
                     value={buyAmount}
                     onChange={(e) => {
@@ -321,17 +321,17 @@ export default function Presale() {
 
                   <button
                     onClick={handleBuyPresale}
-                    className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-2xl font-bold"
+                    className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-3xl font-bold"
                   >
                     Buy Presale
                   </button>
 
-<button
-  onClick={refreshData}
-  className="bg-gray-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold min-w-[9rem]"
->
-  Refresh
-</button>
+                    <button
+                    onClick={refreshData}
+                    className="bg-gray-700 text-yellow-100 px-4 py-2 rounded text-lg font-semibold min-w-[9rem]"
+                    >
+                    Refresh
+                    </button>
                 
                   
                   <button

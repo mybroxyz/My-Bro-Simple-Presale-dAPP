@@ -33,9 +33,9 @@ const initOnboard = init({
 
   ],
   appMetadata: {
-    name: 'WEED',
+    name: 'My $BRO',
     icon: ApeIcon,
-    description: 'WeedNFT',
+    description: 'My Bro Presale dAPP',
     recommendedInjectedWallets: [
       { name: 'MetaMask', url: 'https://metamask.io' },
       { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },

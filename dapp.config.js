@@ -1,11 +1,7 @@
 const config = {
-  title: '$WEED',
-  description: 'WeedNFT',
-  contractAddress: '0xb92A5f94466305659976e95c98131B86D8982375',
-  maxMintAmount: 10,
-  presaleMaxMintAmount: 5,
-  presalePrice: 0.420,
-  publicPrice: 0.69
+  title: 'My Bro',
+  description: '$BRO Presale and IDO on Avalanche',
+  contractAddress: '0x022688aD1F6Cf140067672f8971A084666B726F8',
 }
 
 export { config }

@@ -15,7 +15,7 @@
   --clr-selection-bg: #cb3d92;
   --clr-selection-text: #f4f0f0;
   --clr-background: #06070a;
-  --navajo-White: #063009;
+  --navajo-White: #0c0724;
   --brown-er: #1b8b2e;
 
   /* Customize Wallet Modal */
@@ -69,4 +69,11 @@ html {
 ::selection {
   background: var(--clr-selection-bg);
   color: var(--clr-selection-text);
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

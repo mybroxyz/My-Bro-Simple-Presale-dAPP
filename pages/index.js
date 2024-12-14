@@ -1,108 +1,88 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
+// pages/index.js
 
+import Head from 'next/head'
+import Link from 'next/link'
 import { config } from '../dapp.config'
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full h-full min-h-screen overflow-hidden bg-navajoWhite">
+    <div
+      className="flex flex-col w-full min-h-screen bg-cover bg-center m-0 p-0"
+      style={{
+        fontFamily: `'Almendra', serif`,
+        backgroundImage: `url('/images/background.webp')`,
+        backgroundPosition: 'top center', // Aligns the image to the top
+        backgroundSize: '100% auto', // Makes the width fit the screen
+      }}
+    >
       <Head>
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        {/* Google Font: Almendra */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
         <title>{config.title}</title>
         <meta name="description" content={config.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="min-w-full px-4 text-green-100 py-14 md:px-0">
-        <div className="container flex items-center justify-between h-full max-w-5xl mx-auto">
+      {/* Header Section */}
+      <header className="bg-gray-900/80 py-4 shadow-md w-full">
+        <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
           {/* Logo */}
-          <Link href="#">
-            <a className="text-3xl font-bold font-coiny md:text-5xl">
-              <span className="pr-2 text-transparent bg-gradient-to-br from-brand-blue to-brand-purple bg-clip-text ">
-              </span>
-              WeedNFT
+          <Link href="https://bro-website-simple-tree.vercel.app/">
+            <a className="text-2xl md:text-5xl font-bold text-yellow-500 hover:text-yellow-400">
+              MyBro.xyz
             </a>
           </Link>
-
-          {/* Joepegs Twitter Discord Links */}
-          <nav aria-label="Contact Menu">
-            <ul className="flex items-center space-x-4 md:space-x-6">
-
-
-              <li className="cursor-pointer">
-                <a
-                  href="https://x.com/WeedNFT_420"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <svg
-                    className="w-6 h-6 md:w-8 md:h-8"
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 512 512"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
-                  </svg>
-                </a>
-              </li>
-
-              <li className="cursor-pointer">
-                <a href="https://joepegs.com/collections/avalanche/0xb92a5f94466305659976e95c98131b86d8982375" target="_blank" rel="noreferrer">
-                  <svg
-                    className="w-24 h-6 md:w-32 md:h-8"
-                    viewBox="0 0 120 30"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.26562 0.517212H13.2812H16.3031H17.5062V19.2266H13.2812V4.16096H9.26562V0.517212ZM113.734 23.1859C117.528 23.1859 120 21.1922 120 18.1391C120 13.8065 116.855 13.3834 114.284 13.0375C112.506 12.7983 111.003 12.5961 111.003 11.1641C111.003 10.0703 111.934 9.4297 113.35 9.4297C114.603 9.4297 115.987 10.2016 116.209 11.7109H119.809C119.65 8.56407 117.047 6.47345 113.256 6.47345C109.916 6.47345 107.441 8.46407 107.441 11.2922C107.441 15.2597 110.421 15.7718 112.927 16.2024C114.743 16.5145 116.309 16.7836 116.309 18.2953C116.309 19.2578 115.281 20.0297 113.741 20.0297C111.972 20.0297 110.784 19.0672 110.622 17.5234H107.022L107.019 17.5266C107.212 21.0016 109.941 23.1859 113.734 23.1859ZM80.2344 23.186C84.2188 23.186 87.2375 20.9704 87.85 17.5329H83.9969C83.5781 19.0735 82.2625 19.911 80.2375 19.911C77.7313 19.911 76.0594 18.2391 75.7688 15.636H87.7219C87.7532 15.3141 87.7844 14.8329 87.7844 14.286C87.7844 10.4297 85.2156 6.47661 79.9125 6.47661C74.6094 6.47661 71.975 10.5266 71.975 14.7672C71.975 19.0079 74.9313 23.186 80.2344 23.186ZM79.9125 9.43286C82.2594 9.43286 83.6719 10.9766 83.8313 13.0329H75.8625C76.2813 10.5891 77.6969 9.43286 79.9125 9.43286ZM62.8688 23.1859C60.9094 23.1859 59.175 22.414 58.275 21.1609V29.4828H54.3563V6.73593H58.275V8.76092C59.2375 7.37967 61.0063 6.47968 63.1594 6.47968C67.8188 6.47968 70.6781 9.8828 70.6781 14.8328C70.6781 19.7797 67.625 23.1859 62.8688 23.1859ZM66.7594 14.8328C66.7594 11.8453 65.025 9.8828 62.4219 9.8828C59.8188 9.8828 58.0219 11.8453 58.0219 14.8328C58.0219 17.8203 59.7563 19.7828 62.4219 19.7828C65.0875 19.7828 66.7594 17.8203 66.7594 14.8328ZM19.0844 14.8454C19.0844 10.0485 22.6031 6.52975 27.5281 6.52975C32.4531 6.52975 35.9375 10.0485 35.9375 14.8485C35.9375 19.6454 32.4219 23.161 27.5281 23.161C22.6344 23.161 19.0844 19.6454 19.0844 14.8454ZM23.0469 14.8485C23.0469 17.7579 24.8375 19.7735 27.525 19.7735C30.2125 19.7735 31.9719 17.7579 31.9719 14.8485C31.9719 11.9391 30.1813 9.9235 27.525 9.9235C24.8688 9.9235 23.0469 11.936 23.0469 14.8485ZM40.7312 15.6484C41.0187 18.2391 42.6812 19.9016 45.1781 19.9016C47.1937 19.9016 48.5062 19.0703 48.9218 17.5328H52.7593C52.1531 20.9547 49.1437 23.1641 45.1781 23.1641C39.9 23.1641 36.9562 19.0047 36.9562 14.7828C36.9562 10.5609 39.5781 6.53282 44.8562 6.53282C50.1312 6.53282 52.6906 10.4672 52.6906 14.3047C52.6906 14.8484 52.6593 15.3297 52.6281 15.6484H40.7312ZM48.7593 13.0547C48.6 11.0078 47.1937 9.47345 44.8593 9.47345C42.65 9.47345 41.2437 10.6234 40.8281 13.0547H48.7593ZM13.2844 19.2266H6.80624V22.8704H13.2844V19.2266ZM101.687 21.1297C100.887 22.3828 99.0219 23.1859 96.9969 23.1859C92.1125 23.1859 89.2844 19.7828 89.2812 14.8328C89.2812 9.88593 92.1094 6.47968 96.9281 6.47968C98.9531 6.47968 100.719 7.31405 101.65 8.56717V6.73593H105.603V23.8266C105.603 27.1984 103.162 29.4797 99.5312 29.4797H91.5312V26.3328H98.9875C100.562 26.3328 101.687 25.1453 101.687 23.4422V21.1297ZM101.944 14.8328C101.944 11.8453 100.209 9.8828 97.5437 9.8828C94.875 9.8828 93.2062 11.8422 93.2062 14.8328C93.2062 17.8203 94.9094 19.7828 97.5437 19.7828C100.175 19.7828 101.944 17.8203 101.944 14.8328ZM3.125 15.5515H6.80312V19.2297H3.125V15.5515ZM2.575 12.4266H0V15.0016H2.575V12.4266Z" fill="currentColor"
-                      ></path>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {/* LFJ.gg Link */}
+          <Link href="https://lfj.gg/avalanche/trade">
+            <a className="text-lg md:text-3xl font-bold text-yellow-500 hover:text-yellow-400">
+              LFJ.gg
+            </a>
+          </Link>
         </div>
       </header>
 
-      <div className="container flex flex-col items-center w-full h-full max-w-5xl pt-4 mx-auto">
-        <div className="flex flex-col items-center w-full max-w-4xl">
-          <Link href="/" passHref>
-            <a className="inline-flex items-center px-6 mt-6 ml-6 text-4xl font-bold text-center rounded mb- font-coiny oy-2 sm:text-4xl md:text-5xl text-rose-600 hover:bg-rose-600 hover:text-green-100">
-            
-            </a>
-          </Link>
-
-          <div className="flex flex-col items-center w-full mt-2 space-y-10 md:flex-row md:space-x-16">
-            {/* Image */}
+      {/* Main Content */}
+      <main className="flex flex-col items-center py-10 px-4">
+        <div className="container max-w-5xl mx-auto space-y-10">
+          {/* Info and Buy Section */}
+          <div className="bg-gray-900/70 backdrop-blur-md rounded-3xl p-10 shadow-lg text-center">
+            {/* Logo */}
             <img
-              src="/images/9.gif"
-              className="object-cover w-64 h-64 rounded-md"
+              src="/images/broLogo.png"
+              alt="Bro Logo"
+              className="w-36 h-36 mx-auto mb-6 rounded-md"
             />
 
-            <div className="flex flex-col items-center justify-center px-4 py-8 mt-2 text-center text-green-100 md:items-start font-coiny md:px-0" style={{ whiteSpace: 'pre-line' }}>
-            <div className="flex flex-col items-center justify-center h-full">
-              <h2 className="text-4xl font-bold md:text-4xl">
-              🔥$WEED 404🔥
-      
-              </h2>
+            {/* Description Box */}
+            <div className="bg-gray-800/70 backdrop-blur-md p-6 max-w-2xl mx-auto mb-8 shadow-inner rounded-xl">
+              <div className="text-lg md:text-3xl text-yellow-400 leading-relaxed space-y-6">
+                <p>🧙‍♂️ $BRO fair launch on Avalanche!</p>
+                <p>🌕 Join our presale to get whitelisted in the IDO.</p>
+                <p>🍄 $BRO will be airdropped to presale buyers.</p>
+                <p>⛏️ LP will be automatically created by the contract.</p>
+              </div>
+            </div>
 
-              <p className="mt-16 text-3xl ">
-                {`🌿420 $WEED NFTs on Avalanche!🌿
-
-                🎉Celebrate with a digital joint by @ChiknOGMeme 🎉
-                `}
+            {/* Call-to-Action Box */}
+            <div className="bg-gray-800/70 backdrop-blur-md p-8 max-w-lg mx-auto shadow-inner rounded-xl">
+              <p className="text-xl md:text-2xl text-yellow-300 leading-relaxed mb-6">
+                💫 Send at least 1 AVAX directly to the contract address, or click the link below to enter the presale:
               </p>
-              <p className="mt-12 text-3xl">
-              {`*4.20% of all mint proceeds will be used to buy and burn $COQ and $KONG!
-              `}
-              </p>
+              <Link href="/presale" passHref>
+                <a className="inline-flex items-center justify-center px-8 py-4 text-2xl md:text-3xl font-bold text-yellow-100 rounded bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 transition-transform transform hover:scale-105">
+                  Buy $BRO
+                </a>
+              </Link>
             </div>
           </div>
-          </div>
-          </div>
-      </div>
+        </div>
+      </main>
     </div>
   )
 }

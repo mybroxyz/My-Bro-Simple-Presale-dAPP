@@ -1,4 +1,4 @@
-.env contract address and mint info
+.env no wait dapp.config contract address and mint info
 
 Ape.js edit svg word to ticker
 Search repo for WEED

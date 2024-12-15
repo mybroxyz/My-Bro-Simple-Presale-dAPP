@@ -229,7 +229,7 @@ export default function Presale() {
           {/* Logo */}
           <Link href="/">
             <a className="text-2xl md:text-5xl font-bold text-yellow-500 hover:text-yellow-400">
-              MyBro.xyz
+              🧙‍♂️
             </a>
           </Link>
           {/* Right side wallet info */}
@@ -273,7 +273,7 @@ export default function Presale() {
       <main className="flex flex-col items-center py-10 px-4">
         <div className="container max-w-5xl mx-auto space-y-10">
           {/* Outer Box */}
-          <div className="bg-gray-900/70 backdrop-blur-md rounded-3xl p-10 shadow-lg text-center">
+          <div className="bg-gray-900/70 backdrop-blur-md rounded-3xl p-10 shadow-lg text-center border border-yellow-900">
             
             {/* Title / Phase Info */}
             <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 mb-4">
@@ -291,7 +291,7 @@ export default function Presale() {
             <hr className="border-yellow-500 mb-6 w-full" />
 
             {/* Sub-Box for Buttons and Inputs */}
-            <div className="bg-gray-800/60 p-6 rounded-lg shadow-inner flex flex-col items-center space-y-6">
+            <div className="bg-gray-800/60 p-6 rounded-lg shadow-inner flex flex-col items-center space-y-6 border border-yellow-900">
               {/* PHASE-SPECIFIC UI */}
               {phase === 0 && (
                 <div className="flex flex-col items-center w-full space-y-4">
@@ -300,7 +300,7 @@ export default function Presale() {
                     min="1"
                     max={Math.floor((userWalletAvax - 0.001) * 10) / 10} // Max is user's balance minus gas, rounded down to nearest 0.1
                     step="0.1"
-                    className="w-64 p-2 rounded bg-gray-900 border border-gray-600 text-2xl text-yellow-100"
+                    className="w-64 p-2 rounded bg-gray-700 border border-gray-600 text-2xl text-yellow-100"
                     placeholder="Amount in AVAX (min 1)"
                     value={buyAmount}
                     onChange={(e) => {

@@ -1,7 +1,7 @@
 const config = {
   title: 'My Bro',
   description: '$BRO Presale and IDO on Avalanche',
-  contractAddress: '0x022688aD1F6Cf140067672f8971A084666B726F8',
+  contractAddress: '0x1F253A7958dd44E5098E1e14126565071Fb8759D',
 }
 
 export { config }

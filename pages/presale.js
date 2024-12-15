@@ -125,12 +125,12 @@ export default function Presale() {
     }
   }
 
-  // Auto-refresh every 5 seconds
+  // Auto-refresh every 10 seconds
   useEffect(() => {
     fetchData()
     const interval = setInterval(() => {
       fetchData()
-    }, 5000)
+    }, 10000)
     return () => clearInterval(interval)
   }, [wallet])
 
@@ -198,7 +198,9 @@ export default function Presale() {
   const refreshData = async () => {
     setStatus({ success: false, message: 'Refreshing...' })
     await fetchData()
+    setStatus({ success: true, message: 'Refreshed!' }) // Replace or clear message after refreshing
   }
+  
 
   // ============== RENDER ==============
   return (

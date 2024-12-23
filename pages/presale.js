@@ -125,12 +125,12 @@ export default function Presale() {
     }
   }
 
-  // Auto-refresh every 10 seconds
+  // Auto-refresh every 30 seconds
   useEffect(() => {
     fetchData()
     const interval = setInterval(() => {
       fetchData()
-    }, 10000)
+    }, 30000)
     return () => clearInterval(interval)
   }, [wallet])
 

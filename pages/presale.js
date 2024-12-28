@@ -547,12 +547,12 @@ export default function Presale() {
                 Contract Address :
               </h3>
               <a
-                href={`https://testnet.snowtrace.io/address/0xdAA35529c01C073dFA9B25B2EdEdB08C780519E2#code`}
+                href={`https://testnet.snowtrace.io/address/0xA1BC71E9b5B897E379750EfBE0B1E24276566746#code`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-yellow-500 mt-4 break-all"
               >
-                0xdAA35529c01C073dFA9B25B2EdEdB08C780519E2
+                0xA1BC71E9b5B897E379750EfBE0B1E24276566746
               </a>
 
 

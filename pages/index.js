@@ -33,7 +33,7 @@ export default function Home() {
       <header className="bg-gray-900/80 py-4 shadow-md w-full">
         <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
           {/* Logo */}
-          <Link href="https://bro-website-simple-tree.vercel.app/">
+          <Link href="https://www.mybro.xyz/">
             <a className="text-2xl md:text-5xl font-bold text-yellow-500 hover:text-yellow-400">
               MyBro.xyz
             </a>

@@ -66,7 +66,7 @@ export default function Presale() {
 
   // ============== Countdown Timers ==============
 
-  const idoStartTime = 173539692; // Replace this with the actual IDO start timestamp (in UNIX format)
+  const idoStartTime = 1735400646; // Replace this with the actual IDO start timestamp (in UNIX format)
   const presaleEndTime = idoStartTime - 2 * 60 * 60; // Presale ends 2 hours before IDO starts
   const [countdown, setCountdown] = useState({});
 

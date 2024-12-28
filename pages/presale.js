@@ -66,7 +66,7 @@ export default function Presale() {
 
   // ============== Countdown Timers ==============
 
-  const idoStartTime = 1735550400; // Replace this with the actual IDO start timestamp (in UNIX format)
+  const idoStartTime = 173539692; // Replace this with the actual IDO start timestamp (in UNIX format)
   const presaleEndTime = idoStartTime - 2 * 60 * 60; // Presale ends 2 hours before IDO starts
   const [countdown, setCountdown] = useState({});
 
@@ -547,12 +547,12 @@ export default function Presale() {
                 Contract Address :
               </h3>
               <a
-                href={`https://testnet.snowtrace.io/address/0xA1BC71E9b5B897E379750EfBE0B1E24276566746#code`}
+                href={`https://testnet.snowtrace.io/address/0xE19924Ca09192a1c2161beFECf65C50A33151Ef8#code`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-yellow-500 mt-4 break-all"
               >
-                0xA1BC71E9b5B897E379750EfBE0B1E24276566746
+                0xE19924Ca09192a1c2161beFECf65C50A33151Ef8
               </a>
 
 

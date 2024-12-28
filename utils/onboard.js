@@ -8,10 +8,10 @@ import ApeIcon from '../Ape';
 const injected = injectedModule();
 
 const walletConnectOptions = {
-  projectId: 'WEED',
+  projectId: 'BRO',
   requiredChains: [43114],
   optionalChains: [43113],
-  dappUrl: 'http://WeedNFT.xyz',
+  dappUrl: 'http://BuyMyBro.xyz',
 };
 
 const initOnboard = init({

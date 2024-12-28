@@ -10,7 +10,7 @@ import { config } from '../dapp.config'
 // ============== PRESALE CONTRACT LOGIC ==============
 import {
   getPhase,
-  getTotalAvaxInContract,
+  getTotalAvaxPresale,
   getUserAvaxDeposited,
   depositAvax,
   withdrawAllAvax,
@@ -22,6 +22,22 @@ import {
   isClaimed,
   getPresaleCountdown
 } from '../utils/interactPresale'
+
+// Utility function to format numbers with commas
+const formatNumber = (num) => {
+  if (!num) return '0';
+  return parseFloat(num).toLocaleString('en-US', {
+    minimumFractionDigits: 0, // Adjust decimal places as needed
+    maximumFractionDigits: 2,
+  });
+};
+
+// Utility function to format numbers with commas (no decimals for BRO)
+const formatBroTokens = (num) => {
+  if (!num) return '0';
+  return parseInt(num).toLocaleString('en-US');
+};
+
 
 export default function Presale() {
   // ============== Onboard Setup (if not using `_app.js`) ==============
@@ -46,6 +62,60 @@ export default function Presale() {
   const [claimed, setClaimed] = useState(false)
   const [timer, setTimer] = useState(0)          // Countdown
   const [userAvaxDeposited, setUserAvaxDeposited] = useState('0')
+
+
+  // ============== Countdown Timers ==============
+
+  const idoStartTime = 1735550400; // Replace this with the actual IDO start timestamp (in UNIX format)
+  const presaleEndTime = idoStartTime - 2 * 60 * 60; // Presale ends 2 hours before IDO starts
+  const [countdown, setCountdown] = useState({});
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const now = Math.floor(Date.now() / 1000); // Current time in UNIX format
+      const timeUntilIDO = idoStartTime - now;
+      const timeUntilPresaleEnd = presaleEndTime - now;
+      const timeUntilWLEnd = idoStartTime + 5 * 60 - now; // WL ends 5 minutes after IDO starts
+  
+      if (timeUntilPresaleEnd > 0) {
+        setCountdown({
+          label: 'Presale Ends In:',
+          days: Math.floor(timeUntilPresaleEnd / (24 * 60 * 60)),
+          hours: Math.floor((timeUntilPresaleEnd % (24 * 60 * 60)) / (60 * 60)),
+          minutes: Math.floor((timeUntilPresaleEnd % (60 * 60)) / 60),
+          seconds: timeUntilPresaleEnd % 60,
+        });
+      } else if (timeUntilIDO > 0) {
+        setCountdown({
+          label: 'IDO Begins In:',
+          days: Math.floor(timeUntilIDO / (24 * 60 * 60)),
+          hours: Math.floor((timeUntilIDO % (24 * 60 * 60)) / (60 * 60)),
+          minutes: Math.floor((timeUntilIDO % (60 * 60)) / 60),
+          seconds: timeUntilIDO % 60,
+        });
+      } else if (timeUntilWLEnd > 0) {
+        setCountdown({
+          label: 'WL Phase Ends In:',
+          days: Math.floor(timeUntilWLEnd / (24 * 60 * 60)),
+          hours: Math.floor((timeUntilWLEnd % (24 * 60 * 60)) / (60 * 60)),
+          minutes: Math.floor((timeUntilWLEnd % (60 * 60)) / 60),
+          seconds: timeUntilWLEnd % 60,
+        });
+      } else {
+        setCountdown(null); // Countdown complete
+      }
+    };
+  
+    updateCountdown(); // Initial call
+    const interval = setInterval(updateCountdown, 1000); // Update every second
+  
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [idoStartTime, presaleEndTime]);
+  
+  
+
+
+
 
   // ============== Phase Label Helper ==============
   const phaseLabels = [
@@ -88,8 +158,8 @@ export default function Presale() {
       const currentPhase = await getPhase()
       setPhase(currentPhase)
 
-      const totalAvax = await getTotalAvaxInContract()
-      setContractAvax(totalAvax)
+      const totalAvaxPresale = await getTotalAvaxPresale(); // Fetch total collected
+      setContractAvax(totalAvaxPresale); // Update state with the total collected
 
       const userDep = await getUserAvaxDeposited(wallet.accounts[0].address)
       setUserAvaxDeposited(userDep)
@@ -150,6 +220,9 @@ export default function Presale() {
     try {
       const { success, message } = await depositAvax(avaxToBuy, wallet.accounts[0].address)
       setStatus({ success, message })
+      if (success) {
+        await fetchData(); // Refresh contract values
+      }
     } catch (err) {
       setStatus({ success: false, message: 'Transaction failed: ' + err.message })
     }
@@ -160,6 +233,9 @@ export default function Presale() {
     try {
       const { success, message } = await withdrawAllAvax(wallet.accounts[0].address)
       setStatus({ success, message })
+      if (success) {
+        await fetchData(); // Refresh contract values
+      }
     } catch (err) {
       setStatus({ success: false, message: 'Withdraw failed: ' + err.message })
     }
@@ -170,6 +246,9 @@ export default function Presale() {
     try {
       const { success, message } = await seedLP(wallet.accounts[0].address)
       setStatus({ success, message })
+      if (success) {
+        await fetchData(); // Refresh contract values
+      }
     } catch (err) {
       setStatus({ success: false, message: 'Seed LP failed: ' + err.message })
     }
@@ -180,20 +259,26 @@ export default function Presale() {
     try {
       const { success, message } = await claimTokens(wallet.accounts[0].address)
       setStatus({ success, message })
+      if (success) {
+        await fetchData(); // Refresh contract values
+      }
     } catch (err) {
       setStatus({ success: false, message: 'Claim failed: ' + err.message })
     }
   }
 
   const handleAirdropAll = async () => {
-    setStatus({ success: false, message: 'Airdropping to all...' })
+    setStatus({ success: false, message: 'Airdropping to all...' });
     try {
-      const { success, message } = await airdropAll()
-      setStatus({ success, message })
+      const { success, message } = await airdropAll(wallet.accounts[0].address); // Pass the user address here
+      setStatus({ success, message });
+      if (success) {
+        await fetchData(); // Refresh contract values
+      }
     } catch (err) {
-      setStatus({ success: false, message: 'AirdropAll failed: ' + err.message })
+      setStatus({ success: false, message: 'AirdropAll failed: ' + err.message });
     }
-  }
+  };  
 
   const refreshData = async () => {
     setStatus({ success: false, message: 'Refreshing...' })
@@ -233,7 +318,23 @@ export default function Presale() {
             <a className="text-2xl md:text-5xl font-bold text-yellow-500 hover:text-yellow-400">
               🧙‍♂️
             </a>
-          </Link>
+          </Link>    
+                    
+          
+          {/* Countdown Timer Display */}
+          {countdown && (
+            <div className="text-yellow-100 text-lg md:text-xl text-center my-0">
+              <p className="font-bold">{countdown.label}</p>
+              <p>
+                {countdown.days > 0 && `${countdown.days}d `}
+                {countdown.hours > 0 && `${countdown.hours}h `}
+                {countdown.minutes > 0 && `${countdown.minutes}m `}
+                {`${countdown.seconds}s`}
+              </p>
+            </div>
+          )}
+
+
           {/* Right side wallet info */}
           <div className="flex items-center space-x-4 text-yellow-300">
             {wallet ? (
@@ -245,19 +346,19 @@ export default function Presale() {
                   </p>
                   {parseFloat(userTokenBalance) > 0 && (
                     <p className="text-xs">
-                      BRO: {userTokenBalance}
-                    </p>
+                      BRO: {formatBroTokens(userTokenBalance)}
+                      </p>
                   )}
                   <p className="text-xs">
                     AVAX: {userWalletAvax}
                   </p>
                 </div>
-                <button
+                {/*<button
                   onClick={() => disconnect({ label: wallet.label })}
                   className="bg-yellow-900 text-yellow-100 px-3 py-1 rounded text-sm"
                 >
                   Disconnect
-                </button>
+                </button>*/}
               </>
             ) : (
               <button
@@ -283,8 +384,8 @@ export default function Presale() {
             </h2>
             {/* 2-line display: total avax, user deposit */}
             <div className="flex flex-col md:flex-row items-center md:justify-between text-yellow-200 text-lg md:text-xl mb-6 w-full">
-            <p className="md:text-left text-center w-full md:w-auto">Total AVAX in Presale: {contractAvax}</p>
-            <p className="md:text-right text-center w-full md:w-auto">Your AVAX Deposited: {userAvaxDeposited}</p>
+            <p className="md:text-left text-center w-full md:w-auto">Total AVAX in Presale: {formatNumber(contractAvax)}</p>
+            <p className="md:text-right text-center w-full md:w-auto">Your AVAX Deposited: {formatNumber(userAvaxDeposited)}</p>
             </div>
 
             
@@ -384,26 +485,32 @@ export default function Presale() {
                     </button>
                   )}
                   {airdropDone && (
-                    <p className="text-sm text-green-300">All tokens have been airdropped!</p>
+                    <p className="text-m text-yellow-700">All tokens have been airdropped!</p>
                   )}
                 </div>
               )}
 
+
               {phase === 3 && (
                 <div className="flex flex-col items-center w-full space-y-4">
-                  <p className="text-yellow-100 text-lg md:text-xl">
-                    WHITELISTED IDO. Countdown to WL end: {timer} s
-                  </p>
-                  {/* Additional whitelist IDO details can be added here */}
+                  <p className="text-yellow-100 text-lg md:text-xl">Whitelisted trading is live!</p>
+
+                  <Link href="https://lfj.gg/avalanche/trade" passHref>
+                    <a
+                      className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-xl font-bold"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Buy on LFJ.gg
+                    </a>
+                  </Link>
                 </div>
               )}
 
               {phase === 4 && (
                 <div className="flex flex-col items-center w-full space-y-4">
-                  <p className="text-yellow-100 text-lg md:text-xl">PUBLIC SALE LIVE!</p>
-                  <p className="text-yellow-100 text-lg md:text-xl">
-                    Total Collected (presale): {contractAvax} AVAX
-                  </p>
+                  <p className="text-yellow-100 text-lg md:text-xl">Public trading is live!</p>
+
                   <Link href="https://lfj.gg/avalanche/trade" passHref>
                     <a
                       className="bg-gradient-to-br from-yellow-700 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-yellow-100 px-6 py-3 rounded text-xl font-bold"
@@ -440,13 +547,15 @@ export default function Presale() {
                 Contract Address :
               </h3>
               <a
-                href={`https://snowtrace.io/address/0x022688aD1F6Cf140067672f8971A084666B726F8#code`}
+                href={`https://testnet.snowtrace.io/address/0x5180062e63D7F796FDc9EF6a8DEF85C58899c24d#code`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-yellow-500 mt-4 break-all"
               >
-                0x022688aD1F6Cf140067672f8971A084666B726F8
+                0x5180062e63D7F796FDc9EF6a8DEF85C58899c24d
               </a>
+
+
             </div>
           </div>
         </div>

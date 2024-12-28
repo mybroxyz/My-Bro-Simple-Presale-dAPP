@@ -86,32 +86,35 @@ export async function getUserTokenBalance(userAddress) {
  */
 export async function depositAvax(amountAvax, userAddress) {
   if (!broContract) {
-    return { success: false, message: 'Contract not initialized.' }
+    return { success: false, message: 'Contract not initialized.' };
   }
   try {
-    const valueToSend = web3.utils.toWei(amountAvax.toString(), 'ether')
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [{
-        from: userAddress,
-        to: config.contractAddress,
-        value: web3.utils.toHex(valueToSend),
-        data: broContract.methods.buyPresale().encodeABI()
-      }]
-    })
+    const valueToSend = web3.utils.toWei(amountAvax.toString(), 'ether');
+    
+    // Using the `send` method for the transaction
+    const txReceipt = await broContract.methods.buyPresale().send({
+      from: userAddress,
+      value: valueToSend,
+    });
+
     return {
       success: true,
       message: (
-        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank" rel="noopener noreferrer">
-          Transaction: {txHash}
+        <a
+          href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Transaction confirmed: {txReceipt.transactionHash}
         </a>
-      )
-    }
+      ),
+    };
   } catch (err) {
-    console.error('depositAvax Error:', err)
-    return { success: false, message: 'Error depositing AVAX: ' + err.message }
+    console.error('depositAvax Error:', err);
+    return { success: false, message: 'Error depositing AVAX: ' + err.message };
   }
 }
+
 
 /**
  * Withdraw all AVAX from the contract (likely onlyOwner).
@@ -186,25 +189,28 @@ export async function claimTokens(userAddress) {
  * Airdrop all presale buyers in chunks (maxTransfers=100).
  * Only the admin or anyone can call it, but practically should be admin or script-based.
  */
-export async function airdropAll() {
+export async function airdropAll(userAddress) {
   if (!broContract) {
-    return { success: false, message: 'Contract not initialized.' }
+    return { success: false, message: 'Contract not initialized.' };
   }
   try {
-    const txReceipt = await broContract.methods.airdropBuyers(100).send()
+    const txReceipt = await broContract.methods.airdropBuyers(100).send({ 
+      from: userAddress // Specify the sender's address here
+    });
     return {
       success: true,
       message: (
         <a href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
           Airdrop TX: {txReceipt.transactionHash}
         </a>
-      )
-    }
+      ),
+    };
   } catch (err) {
-    console.error('airdropAll Error:', err)
-    return { success: false, message: 'AirdropAll failed: ' + err.message }
+    console.error('airdropAll Error:', err);
+    return { success: false, message: 'AirdropAll failed: ' + err.message };
   }
 }
+
 
 /**
  * Checks if the global airdrop is completed.
@@ -282,5 +288,20 @@ export async function getPublicSaleData() {
   } catch (err) {
     console.error('getPublicSaleData Error:', err)
     return { publicCollected: 0 }
+  }
+}
+
+
+/**
+ * Returns the total AVAX collected during the presale (in Ether units).
+ */
+export async function getTotalAvaxPresale() {
+  if (!broContract) return '0';
+  try {
+    const totalAvaxWei = await broContract.methods.totalAvaxPresale().call();
+    return web3.utils.fromWei(totalAvaxWei, 'ether');
+  } catch (err) {
+    console.error('getTotalAvaxPresale Error:', err);
+    return '0';
   }
 }

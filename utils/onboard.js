@@ -10,7 +10,6 @@ const injected = injectedModule();
 const walletConnectOptions = {
   projectId: 'BRO',
   requiredChains: [43114],
-  optionalChains: [43113],
   dappUrl: 'http://BuyMyBro.xyz',
 };
 
@@ -18,12 +17,6 @@ const initOnboard = init({
   wallets: [injected, walletConnectModule(walletConnectOptions), coinbaseModule()],
   chains: [ 
 
-    {
-      id: '0xa869',
-      token: 'AVAX',
-      label: 'Fuji Avalanche C-Chain',
-      rpcUrl: 'https://api.avax-test.network/ext/bc/C/rpc'
-    },
     {
       id: '0xa86a',
       token: 'AVAX',

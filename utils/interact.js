@@ -462,9 +462,9 @@ const tx = {
     return {
       success: true,
       status: (
-        <a href={`https://testnet.snowtrace.io/tx/${txHash}`} target="_blank">  
+        <a href={`https://snowtrace.io/tx/${txHash}`} target="_blank">  
           <p>✅ Check out your transaction on Snowtrace:</p>
-          <p>{`https://testnet.snowtrace.io/tx/${txHash}`}</p>
+          <p>{`https://snowtrace.io/tx/${txHash}`}</p>
         </a>
       )
     }

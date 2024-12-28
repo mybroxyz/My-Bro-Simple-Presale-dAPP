@@ -101,7 +101,7 @@ export async function depositAvax(amountAvax, userAddress) {
       success: true,
       message: (
         <a
-          href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`}
+          href={`https://snowtrace.io/tx/${txReceipt.transactionHash}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -128,7 +128,7 @@ export async function withdrawAllAvax(userAddress) {
     return {
       success: true,
       message: (
-        <a href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
           Transaction: {txReceipt.transactionHash}
         </a>
       )
@@ -151,7 +151,7 @@ export async function seedLP(userAddress) {
     return {
       success: true,
       message: (
-        <a href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
           Transaction: {txReceipt.transactionHash}
         </a>
       )
@@ -174,7 +174,7 @@ export async function claimTokens(userAddress) {
     return {
       success: true,
       message: (
-        <a href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
           Claim TX: {txReceipt.transactionHash}
         </a>
       )
@@ -200,7 +200,7 @@ export async function airdropAll(userAddress) {
     return {
       success: true,
       message: (
-        <a href={`https://testnet.snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://snowtrace.io/tx/${txReceipt.transactionHash}`} target="_blank" rel="noopener noreferrer">
           Airdrop TX: {txReceipt.transactionHash}
         </a>
       ),
